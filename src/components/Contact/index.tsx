@@ -9,7 +9,7 @@ export default function ContactSection() {
     };
 
     return (
-        <section id="contact" className="scroll-mt-24 pt-0 pb-16">
+        <section id="contact" className="scroll-mt-24 pt-0 pb-20">
             <div className="">
                 <h2 className="mb-9 text-navyblue text-center text-5xl font-bold">
                     Contact Us

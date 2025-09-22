@@ -241,11 +241,23 @@ const Register = () => {
                             >
                                 <Dialog.Panel className="w-full max-w-md transform rounded-2xl bg-white p-6 shadow-xl transition-all">
                                     <div className="flex flex-col items-center">
-                                        <img
+                                        {/* <img
                                             src="/assets/signin/logo.svg"
                                             alt="logo"
                                             className="h-12 w-12"
-                                        />
+                                        /> */}
+                                        <div className="flex items-center justify-center gap-2 pl-12">
+                                            <img
+                                                src="/assets/signin/logo.svg"
+                                                alt="logo icon"
+                                                className="w-12 h-12"
+                                            />
+                                            <img
+                                                src="/assets/signin/logo-text.svg"
+                                                alt="logo text"
+                                                className="w-48 h-auto"
+                                            />
+                                        </div>
                                         <h2 className="mt-4 text-2xl font-bold text-gray-900">
                                             Create an account
                                         </h2>

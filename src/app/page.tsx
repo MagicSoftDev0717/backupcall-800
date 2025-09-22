@@ -27,7 +27,7 @@ export default function Home() {
       <CTA />
      
       <Contact />
-      <Network />
+      {/* <Network /> */}
       {/* <Clientsay /> */}
       {/* <Newsletter /> */}
     </main>

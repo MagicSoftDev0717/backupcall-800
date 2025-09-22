@@ -10,12 +10,12 @@ interface ProductType {
 const products: ProductType[] = [
     {
         id: 1,
-        link: ['Home', 'How it works', 'Pricing', 'Contact'],
+        link: ['Home', 'How it works', 'Pricing', 'Contact', 'FAQ'],
     },
-    {
-        id: 2,
-        link: ['Help', 'Resources', 'Application', 'Team']
-    }
+    // {
+    //     id: 2,
+    //     link: ['Help', 'Resources', 'Application', 'Team']
+    // }
 ]
 
 const footer = () => {
@@ -25,8 +25,8 @@ const footer = () => {
                 <div className="my-2 flex justify-center grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-12 xl:gap-x-8 items-start">
 
                     {/* COLUMN-1 */}
-
-                    <div className='col-span-4 md:col-span-12 lg:col-span-4'>
+                    <div className='col-span-4 md:col-span-12 lg:col-span-1'></div>
+                    <div className='col-span-4 md:col-span-12 lg:col-span-5'>
                         <div className="flex items-center gap-4 pb-8">
                             <img
                                 src="/assets/footer/logo.svg"
@@ -55,11 +55,11 @@ const footer = () => {
                     {/* CLOUMN-2/3 */}
 
                     {products.map((product) => (
-                        <div key={product.id} className="group relative col-span-2 md:col-span-4 lg:col-span-2">
+                        <div key={product.id} className="group relative col-span-2 md:col-span-4 lg:col-span-3">
                             <ul>
                                 {product.link.map((link: string, index: number) => (
                                     <li key={index} className='mb-5'>
-                                        <Link href="/" className="text-white text-sm font-normal mb-6 space-links">{link}</Link>
+                                        <Link href="/" className="text-white text-medium font-normal mb-6 space-links">{link}</Link>
                                     </li>
                                 ))}
                             </ul>
@@ -83,15 +83,15 @@ const footer = () => {
                         </div>
                     </div> */}
 
-                    <div className='col-span-4 md:col-span-4 lg:col-span-4'>
+                    <div className='col-span-4 md:col-span-4 lg:col-span-3'>
                         <div className="flex gap-2">
                             <h5 className="text-base font-normal text-offwhite">Apps</h5>
                         </div>
                         <div className="flex gap-2 mt-6 mb-4">
-                            <Image src={'/assets/footer/app-store.svg'} alt="appstore-icon" width={128} height={64} />
+                            <Image src={'/assets/footer/app-store.svg'} alt="appstore-icon" width={156} height={78} />
                         </div>
                         <div className="flex gap-2 mt-8 mb-4">
-                             <Image src={'/assets/footer/google-play.svg'} alt="googleplay-icon" width={128} height={64} />
+                             <Image src={'/assets/footer/google-play.svg'} alt="googleplay-icon" width={156} height={78} />
                         </div>
                     </div>
 
