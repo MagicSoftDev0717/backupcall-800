@@ -18,7 +18,7 @@ const Banner = () => {
 
                     <div className="text-center mt-5">
                         <button type="button" className='text-15px text-white font-medium bg-blue py-5 px-9 mt-2 leafbutton'>
-                            Get Started - it's free
+                            Get Started - it&lsquo;s free
                         </button>
                         <button type="button" className='text-15px ml-4 mt-2 text-blue transition duration-150 ease-in-out hover:text-white hover:bg-blue font-medium py-5 px-16 border border-lightgrey leafbutton'>
                             See how it works
