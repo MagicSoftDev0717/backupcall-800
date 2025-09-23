@@ -6,7 +6,7 @@ const Banner = () => {
             <div className="px-6 lg:px-8">
                 <div className="mx-auto max-w-7xl pt-16 sm:pt-20 pb-20 banner-image">
                     <div className="text-center">
-                        <h1 className="text-4xl font-semibold text-navyblue sm:text-5xl  lg:text-6xl md:4px lh-48">
+                        <h1 className="text-4xl font-semibold text-navyblue sm:text-5xl  lg:text-5xl md:4px lh-48">
                             Back up your contacts. <br /> Call them anywhere.
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-bluegray">
@@ -20,7 +20,7 @@ const Banner = () => {
                         <button type="button" className='text-15px text-white font-medium bg-blue py-5 px-9 mt-2 leafbutton'>
                             Get Started - it&lsquo;s free
                         </button>
-                        <button type="button" className='text-15px ml-4 mt-2 text-blue transition duration-150 ease-in-out hover:text-white hover:bg-blue font-medium py-5 px-16 border border-lightgrey leafbutton'>
+                        <button type="button" className='text-15px ml-4 mt-2 text-blue transition duration-150 ease-in-out hover:text-white hover:bg-blue font-medium py-5 px-12 border border-lightgrey leafbutton'>
                             See how it works
                         </button>
                     </div>
