@@ -12,7 +12,7 @@ const navigation: NavigationItem[] = [
   { name: 'How it works', href: '#howitworks', current: false },
   { name: 'Pricing', href: '#pricing', current: false },
   { name: 'FAQ', href: '#faq', current: false },
-  { name: 'Contact US', href: '#contact', current: false },
+  { name: 'Contact US', href: '#contactus', current: false },
 ]
 
 function classNames(...classes: string[]) {

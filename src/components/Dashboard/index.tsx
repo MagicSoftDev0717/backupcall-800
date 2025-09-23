@@ -25,9 +25,9 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-lightblue pt-28 pb-10">
             {/* TOP NAV */}
-            <header className="bg-white border-b border-slate-200 shadow-sm">
+            {/* <header className="bg-white border-b border-slate-200 shadow-sm">
                 <div className="container flex h-16 items-center justify-between">
                     <Link href="/" className="flex items-center gap-2">
                         <Logo />
@@ -46,7 +46,7 @@ export default function Dashboard() {
                         <button className="text-red-600 hover:underline">Logout</button>
                     </nav>
                 </div>
-            </header>
+            </header> */}
 
             <main className="py-10 max-w-6xl mx-auto">
                 {/* PAGE HEADING */}

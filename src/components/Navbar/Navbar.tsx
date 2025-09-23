@@ -118,7 +118,7 @@ const mainLinks = [
 const dropdownLinks = [
   { name: "How it works", href: "#howitworks" },
   { name: "FAQ", href: "#faq" },
-  { name: "Contact Us", href: "#contact" },
+  { name: "Contact Us", href: "#contactus" },
 ];
 
 function classNames(...classes: string[]) {

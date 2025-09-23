@@ -8,7 +8,7 @@ import Buyers from '../components/Buyers/index';
 import Provide from '../components/Provide/index';
 import Howitworks from '../components/Howitworks/index';
 import Network from '../components/Network/index';
-import Contact from '../components/Contact/index';
+import Contact from '../components/ContactUs/index';
 import Clientsay from '../components/Clientsay/index';
 import Newsletter from '../components/Newsletter/Newsletter';
 
