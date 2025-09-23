@@ -15,7 +15,7 @@ import Newsletter from '../components/Newsletter/Newsletter';
 
 export default function Home() {
   return (
-    <main>
+    <main className='bg-lightblue'>
       <Banner />
       {/* <Companies /> */}
       <Howitworks />

@@ -23,14 +23,14 @@ const whydata: whydata[] = [
 
 const Howitworks = () => {
     return (
-        <section id="howitworks">
+        <section id="howitworks" className="bg-lightblue">
 
             <div className='mx-auto max-w-7xl px-4 my-20 sm:py-20 lg:px-8'>
                 <div className='grid grid-cols-1 lg:grid-cols-2'>
 
                     {/* COLUMN-1 */}
-                    <div className="lg:-ml-64">
-                        <Image src="/assets/why/iPad.png" alt="iPad-image" width={4000} height={900} />
+                    <div className="flex items-center justify-center py-8">
+                        <Image src="/assets/howitworks/howitworks.png" alt="howit-image" width={480} height={400} />
                     </div>
 
                     {/* COLUMN-2 */}
@@ -42,7 +42,7 @@ const Howitworks = () => {
                             {whydata.map((items, i) => (
                                 <div className="flex mt-4" key={i}>
                                     <div className="rounded-full h-10 w-12 flex items-center justify-center bg-circlebg">
-                                        <Image src="/assets/why/check.svg" alt="check-image" width={24} height={24} />
+                                        <Image src="/assets/howitworks/check.svg" alt="check-image" width={24} height={24} />
                                     </div>
                                     <div className="ml-5">
                                         <h4 className="text-2xl font-semibold">{items.heading}</h4>

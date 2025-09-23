@@ -3,10 +3,10 @@ import Image from "next/image";
 const Banner = () => {
     return (
         <main>
-            <div className="px-6 lg:px-8">
+            <div className="px-6 lg:px-8 bg-lightblue">
                 <div className="mx-auto max-w-7xl pt-16 sm:pt-20 pb-20 banner-image">
                     <div className="text-center">
-                        <h1 className="text-4xl font-semibold text-navyblue sm:text-5xl  lg:text-5xl md:4px lh-48">
+                        <h1 className="text-4xl font-semibold text-navyblue sm:text-5xl  lg:text-5xl md:4px lh-48 py-8">
                             Back up your contacts. <br /> Call them anywhere.
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-bluegray">

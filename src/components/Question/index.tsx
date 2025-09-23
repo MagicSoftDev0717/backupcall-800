@@ -18,7 +18,7 @@ export function FaqItem({ q, a }: FaqItemProps) {
 }
 const Question = () => {
     return (
-        <section id="faq" className="py-20">
+        <section id="faq" className="py-20 bg-lightblue">
             <div className="max-w-4xl mx-auto">
                 <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold tracking-tight text-center">Common questions</h2>
                 <div className="mt-10 grid md:grid-cols-2 gap-6">
