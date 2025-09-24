@@ -2,7 +2,7 @@
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-lightblue pt-28 pb-10">
+    <div className="min-h-screen bg-lightblue pt-20 pb-16">
       <main className="mx-auto max-w-3xl px-4">
         <h1 className="text-3xl font-semibold text-midnightblue">
           Privacy Policy
