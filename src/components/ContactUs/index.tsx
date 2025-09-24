@@ -11,7 +11,7 @@ export default function ContactSection() {
     return (
         <section id="contactus" className="scroll-mt-24 pt-0 pb-20 bg-lightblue">
             <div className="">
-                <h2 className="mb-9 text-navyblue text-center text-5xl font-bold">
+                <h2 className="mb-9 text-navyblue text-center text-4xl font-bold">
                     Contact Us
                 </h2>
                 <div className="flex justify-center">

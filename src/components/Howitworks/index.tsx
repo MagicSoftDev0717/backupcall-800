@@ -35,7 +35,7 @@ const Howitworks = () => {
 
                     {/* COLUMN-2 */}
                     <div>
-                        <h3 className="text-4xl text-navyblue lg:text-5xl pt-4 font-semibold sm:leading-tight mt-5 text-center lg:text-start">How it works</h3>
+                        <h3 className="text-4xl text-navyblue lg:text-4xl pt-4 font-semibold sm:leading-tight mt-5 text-center lg:text-start">How it works</h3>
                         <h4 className="text-lg pt-4 font-normal sm:leading-tight text-center text-beach lg:text-start">Three steps to your next call. The rest runs automatically.</h4>
 
                         <div className="mt-10">

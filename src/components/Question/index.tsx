@@ -20,7 +20,7 @@ const Question = () => {
     return (
         <section id="faq" className="py-20 bg-lightblue">
             <div className="max-w-4xl mx-auto">
-                <h2 className="text-4xl text-navyblue md:text-5xl lg:text-5xl font-semibold tracking-tight text-center">Common Questions</h2>
+                <h2 className="text-4xl text-navyblue md:text-5xl lg:text-4xl font-semibold tracking-tight text-center">Common Questions</h2>
                 <div className="mt-10 grid md:grid-cols-2 gap-6">
                     <FaqItem
                         q="Do I need to install an app to make calls?"

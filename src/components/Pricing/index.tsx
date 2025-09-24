@@ -5,7 +5,7 @@ const Pricing = () => {
     return (
       <section id="pricing" className="py-20 bg-lightblue">
         <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-4xl text-navyblue md:text-5xl lg:text-5xl font-semibold lg:text-center leading-tight">Simple Pricing</h3>
+          <h3 className="text-4xl text-navyblue md:text-5xl lg:text-4xl font-semibold lg:text-center leading-tight">Simple Pricing</h3>
           <p className="text-lg mt-4 text-bluegray">
             No monthly fees. Pay only when you call.
           </p>
@@ -13,7 +13,7 @@ const Pricing = () => {
 
         <div className="mt-12 mx-auto max-w-md rounded-2xl border border-bluegray bg-white p-8 shadow-soft">
           <div className="flex items-end gap-2">
-            <span className="text-5xl font-bold">$0.05</span>
+            <span className="text-4xl font-bold">$0.05</span>
             <span className="text-slate-500 mb-2">/ minute</span>
           </div>
           <ul className="mt-6 text-lg space-y-3 text-slate-700">
