@@ -9,10 +9,10 @@ interface NavigationItem {
 
 const navigation: NavigationItem[] = [
   { name: 'Home', href: '/', current: true },
-  { name: 'How it works', href: '#howitworks', current: false },
-  { name: 'Pricing', href: '#pricing', current: false },
-  { name: 'FAQ', href: '#faq', current: false },
-  { name: 'Contact US', href: '#contactus', current: false },
+  { name: 'Contacts', href: '/contacts', current: false },
+  { name: 'Billing', href: '/billing', current: false },
+  { name: 'Settings', href: '/settings', current: false },
+  { name: 'More', href: '', current: false },
 ]
 
 function classNames(...classes: string[]) {
