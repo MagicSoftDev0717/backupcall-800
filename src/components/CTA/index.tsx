@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { ShieldCheck } from "lucide-react";
 const Pricing = () => {
     return (
       <section className="py-24 bg-lightblue">

@@ -9,7 +9,7 @@ export function FaqItem({ q, a }: FaqItemProps) {
     return (
         <div className="mb-4">
             <div className="flex items-center gap-2 font-semibold text-slate-900">
-                <HelpCircle className="h-8 w-8 text-brand-600" />
+                <HelpCircle className="h-6 w-6 text-brand-600" />
                     <p className="text-lg text-slate-600">{q}</p>
             </div>
             <p className="mt-1 text-slate-600">{a}</p>
@@ -20,7 +20,7 @@ const Question = () => {
     return (
         <section id="faq" className="py-20 bg-lightblue">
             <div className="max-w-4xl mx-auto">
-                <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold tracking-tight text-center">Common questions</h2>
+                <h2 className="text-4xl text-navyblue md:text-5xl lg:text-5xl font-semibold tracking-tight text-center">Common questions</h2>
                 <div className="mt-10 grid md:grid-cols-2 gap-6">
                     <FaqItem
                         q="Do I need to install an app to make calls?"
