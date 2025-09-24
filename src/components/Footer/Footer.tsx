@@ -10,12 +10,13 @@ interface ProductType {
 const products: ProductType[] = [
     {
         id: 1,
-        link: ['Home', 'How it works', 'Pricing', 'Contact', 'FAQ'],
+        link: ['Home', 'Contacts', 'Billing', 'Settings']
     },
-    // {
-    //     id: 2,
-    //     link: ['Help', 'Resources', 'Application', 'Team']
-    // }
+    {
+        id: 2,
+        link: ['About', 'How it works', 'Pricing', 'Contact', 'FAQ'],
+    },
+
 ]
 
 const footer = () => {
@@ -26,7 +27,7 @@ const footer = () => {
 
                     {/* COLUMN-1 */}
                     <div className='col-span-4 md:col-span-12 lg:col-span-1'></div>
-                    <div className='col-span-4 md:col-span-12 lg:col-span-5'>
+                    <div className='col-span-4 md:col-span-12 lg:col-span-4'>
                         <div className="flex items-center gap-4 pb-8">
                             <img
                                 src="/assets/footer/logo.svg"
@@ -55,7 +56,7 @@ const footer = () => {
                     {/* CLOUMN-2/3 */}
 
                     {products.map((product) => (
-                        <div key={product.id} className="group relative col-span-2 md:col-span-4 lg:col-span-3">
+                        <div key={product.id} className="group relative col-span-2 md:col-span-4 lg:col-span-2">
                             <ul>
                                 {product.link.map((link: string, index: number) => (
                                     <li key={index} className='mb-5'>
@@ -91,11 +92,11 @@ const footer = () => {
                             <Image src={'/assets/footer/app-store.svg'} alt="appstore-icon" width={156} height={78} />
                         </div>
                         <div className="flex gap-2 mt-8 mb-4">
-                             <Image src={'/assets/footer/google-play.svg'} alt="googleplay-icon" width={156} height={78} />
+                            <Image src={'/assets/footer/google-play.svg'} alt="googleplay-icon" width={156} height={78} />
                         </div>
                     </div>
 
-                    
+
                 </div>
 
                 {/* All Rights Reserved */}
