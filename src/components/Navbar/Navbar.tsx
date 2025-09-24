@@ -108,7 +108,7 @@ import Registerdialog from "./Registerdialog";
 import Logo from "../Logo";
 
 const mainLinks = [
-  { name: "Home", href: "/" },
+  { name: "Home", href: "/dashboard" },
   { name: "Contacts", href: "/contacts" },
   { name: "Billing", href: "/billing" },
   { name: "Settings", href: "/settings" },

@@ -8,7 +8,7 @@ interface NavigationItem {
 }
 
 const navigation: NavigationItem[] = [
-  { name: 'Home', href: '/', current: true },
+  { name: 'Home', href: '/dashboard', current: true },
   { name: 'Contacts', href: '/contacts', current: false },
   { name: 'Billing', href: '/billing', current: false },
   { name: 'Settings', href: '/settings', current: false },
