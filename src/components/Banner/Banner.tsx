@@ -42,9 +42,9 @@ const scenarios = [
         id: 5,
         src: "/assets/hero/5.png",
         alt: "Using someone else's phone",
-        caption: "Make calls from a borrowed phone",
+        caption: "No phone? Borrow one and call 1-800-Backup",
         description:
-            "Quickly access your contacts from any borrowed phone — no need to log in manually every time.",
+            "If your phone is lost, stolen, or dead, simply borrow a friend’s or a public phone, dial 1-800-Backup, and instantly retrieve your contacts to place calls securely.",
     },
 ];
 
@@ -83,7 +83,7 @@ const Banner = () => {
                         />
                     </div> */}
 
-                    <div className="mx-auto max-w-7xl pt-20 pb-24 banner-image text-center">
+                    <div className="mx-auto max-w-7xl pt-20 pb-3 banner-image text-center">
                         {/* HEADLINE */}
                         <h1 className="text-4xl font-bold text-navyblue sm:text-5xl lg:text-5xl leading-tight">
                             Access Your Contacts from Anywhere
@@ -109,19 +109,25 @@ const Banner = () => {
                                 <div
                                     key={item.id}
                                     onClick={() => setSelectedScenario(item.id)}
-                                    className="group relative flex flex-col items-center cursor-pointer transition-transform hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-300"
+                                    className="group relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
                                 >
+                                    {/* IMAGE WITH OVERLAY */}
                                     <Image
                                         src={item.src}
                                         alt={item.alt}
                                         width={300}
-                                        height={380}
-                                        className="rounded-xl object-cover"
+                                        height={450}
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
-                                    <p className="mt-2 text-sm text-navyblue font-medium group-hover:text-blue transition-colors">
+
+                                    {/* OVERLAY + CAPTION */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                                    <p className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] text-center text-lg font-semibold text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                                         {item.caption}
                                     </p>
                                 </div>
+
                             ))}
                         </div>
 
