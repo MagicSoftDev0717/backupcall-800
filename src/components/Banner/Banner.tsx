@@ -10,7 +10,7 @@ const scenarios = [
         id: 1,
         src: "/assets/hero/1.png",
         alt: "Person in jail calling",
-        caption: "Call from jail or detention",
+        caption: "Call for need to private call",
         description:
             "Easily access your contacts even when you're in jail or detention and need to make an urgent call.",
     },
@@ -89,7 +89,7 @@ const Banner = () => {
                             Access your contacts from anywhere <br />and call at any time.
                         </h1>
                         <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
-                            Securely back up your contacts and make calls when you need them —
+                            Securely back up your contacts and make calls when you need them -
                             even from someone else’s phone. No app required to dial out.
                         </p>
 
