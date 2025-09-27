@@ -53,8 +53,8 @@ const Banner = () => {
     return (
         <main>
             <div className="px-6 lg:px-8 bg-lightblue">
-                <div className="mx-auto max-w-7xl pt-16 sm:pt-20 pb-20 banner-image">
-                    <div className="text-center">
+                <div className="mx-auto max-w-7xl pt-16 sm:pt-20 pb-20">
+                    {/* <div className="text-center">
                         <h1 className="text-4xl font-semibold text-navyblue sm:text-5xl  lg:text-5xl md:4px lh-48 py-8">
                             Back up your contacts. <br /> Call them anywhere.
                         </h1>
@@ -62,17 +62,17 @@ const Banner = () => {
                             Sync your contacts in one click, dial a single 800 number, and
                             connect instantly<br />at a low per-minute rate. No apps required to call.
                         </p>
-                    </div>
+                    </div> */}
 
 
-                    <div className="text-center mt-5">
+                    {/* <div className="text-center mt-5">
                         <button type="button" className='text-15px text-white font-medium bg-blue py-5 px-9 mt-2 leafbutton'>
                             Get Started - it&lsquo;s free
                         </button>
                         <button type="button" className='text-15px ml-4 mt-2 text-blue transition duration-150 ease-in-out hover:text-white hover:bg-blue font-medium py-5 px-12 border border-lightgrey leafbutton'>
                             See how it works
                         </button>
-                    </div>
+                    </div> */}
 
                     {/* <div className="flex justify-center">
                         <Image
@@ -86,7 +86,7 @@ const Banner = () => {
                     <div className="mx-auto max-w-7xl pt-20 pb-3 banner-image text-center">
                         {/* HEADLINE */}
                         <h1 className="text-4xl font-bold text-navyblue sm:text-5xl lg:text-5xl leading-tight">
-                            Access Your Contacts from Anywhere
+                            Access your contacts from anywhere <br />and call at any time.
                         </h1>
                         <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
                             Securely back up your contacts and make calls when you need them —
