@@ -17,7 +17,7 @@ const Proof = () => {
                             Simple. Private. Carrier-grade.
                         </h2>
                         <p className="mt-4 text-bluegray">
-                            Dial one 800 number, search by voice or keypad, and connect instantly.
+                            Dial one 888 number, search by voice or keypad, and connect instantly.
                             Your contacts stay encrypted, and calls route over reliable carrier-grade
                             infrastructure for clear, dependable connections.
                         </p>
