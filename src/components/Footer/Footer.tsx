@@ -102,7 +102,7 @@ const footer = () => {
                 {/* All Rights Reserved */}
 
                 <div className='py-10 lg:flex items-center justify-between border-t border-t-bordertop'>
-                    <h4 className='text-offwhite text-sm text-center lg:text-start font-normal'>@2025 1-800 BackupCall. All Rights Reserved by <Link href="https://backupcall.com/" target="_blank"> backupcall.com</Link></h4>
+                    <h4 className='text-offwhite text-sm text-center lg:text-start font-normal'>@2025 DialBackup. All Rights Reserved by <Link href="https://dialbackup.com/" target="_blank"> dialbackup.com</Link></h4>
                     <div className="flex gap-5 mt-5 lg:mt-0 justify-center lg:justify-start">
                         <h4 className='text-offwhite text-sm font-normal'><Link href="/privacy">Privacy policy</Link></h4>
                         <div className="h-5 bg-bordertop w-0.5"></div>

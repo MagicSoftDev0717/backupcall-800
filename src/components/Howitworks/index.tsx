@@ -11,7 +11,7 @@ const whydata: whydata[] = [
         subheading: "Connect your Google account to import your address book securely.",
     },
     {
-        heading: "Dial the 800 number",
+        heading: "Dial the 888 number",
         subheading: "Say a name or use the keypad menu. We’ll find the right contact.",
     },
     {
