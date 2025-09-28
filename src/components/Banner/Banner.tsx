@@ -104,7 +104,7 @@ const Banner = () => {
                         </div>
 
                         {/* HERO IMAGE GRID */}
-                        <div className="mt-12 grid grid-cols-2 sm:grid-cols-5 gap-4 justify-items-center">
+                        <div className="mt-12 grid grid-cols-1 sm:grid-cols-5 gap-4 justify-items-center">
                             {scenarios.map((item) => (
                                 <div
                                     key={item.id}
