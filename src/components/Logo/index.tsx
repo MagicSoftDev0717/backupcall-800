@@ -36,13 +36,13 @@ export default function Logo({ className = "h-12", wordmark = true }: Props) {
           fill="#2749ad"
           fontFamily="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto"
         >
-          800
+          888
         </text>
       </svg>
 
       {wordmark && (
         <span className="text-2xl font-semibold tracking-tight">
-          Backup<span className="text-brand-600">Call</span>
+          Dial<span className="text-brand-600">Backup</span>
         </span>
       )}
     </div>
