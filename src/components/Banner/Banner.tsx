@@ -44,7 +44,7 @@ const scenarios = [
         alt: "Using someone else's phone",
         caption: "No phone? Borrow one and call 1-800-Backup",
         description:
-            "If your phone is lost, stolen, or dead, simply borrow a friend’s or a public phone, dial 1-800-Backup, and instantly retrieve your contacts to place calls securely.",
+            "If your phone is lost, stolen, or dead, simply borrow a friend’s or a public phone, dial 1-888-Support, and instantly retrieve your contacts to place calls securely.",
     },
 ];
 
