@@ -33,7 +33,7 @@ const products: ProductType[] = [
         ],
     },
 ];
-const footer = () => {
+const Footer = () => {
     const { data: session } = useSession();
     const signupRef = useRef<{ openModal: () => void }>(null);
 
@@ -150,4 +150,4 @@ const footer = () => {
     )
 }
 
-export default footer;
+export default Footer;
