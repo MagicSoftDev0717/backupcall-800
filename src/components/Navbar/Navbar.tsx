@@ -7,7 +7,7 @@ import React, { Fragment } from "react";
 import { useSession, signOut } from "next-auth/react"; // ✅ import session + signOut
 import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
-import Signdialog from "./Signindlg";
+import Signindialog from "./Signindlg";
 import Logo from "../Logo";
 
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
@@ -55,6 +55,7 @@ const Navbar = () => {
   };
   return (
     <Disclosure as="nav" className="navbar">
+      <Signupdialog ref={signupRef} />
       <>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="relative flex h-20 items-center justify-between">
@@ -76,11 +77,11 @@ const Navbar = () => {
                 ))}
 
                 <Link
-                    href="/#pricing"
-                    className="px-3 py-2 text-lg font-medium text-beach hover:text-darkgray"
-                  >
-                    Pricing
-                  </Link>
+                  href="/#pricing"
+                  className="px-3 py-2 text-lg font-medium text-beach hover:text-darkgray"
+                >
+                  Pricing
+                </Link>
 
                 {/* DROPDOWN MENU */}
                 <Menu as="div" className="relative">
@@ -125,8 +126,13 @@ const Navbar = () => {
               {!session ? (
                 <>
                   {/* Show Sign In / Sign Up if not logged in */}
-                  <Signdialog />
-                  <Signupdialog />
+                  <Signindialog />
+                  <button
+                    onClick={() => signupRef.current?.openModal()}
+                    className="text-blue text-lg font-medium ml-2 py-2 px-6 transition duration-150 ease-in-out leafbutton bg-lightblue hover:text-white hover:bg-blue"
+                  >
+                    Sign up
+                  </button>
                 </>
               ) : (
                 <Menu as="div" className="relative">

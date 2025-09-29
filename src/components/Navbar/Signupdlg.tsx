@@ -92,14 +92,6 @@ const Register = forwardRef<RegisterHandle>((props, ref) => {
 
     return (
         <>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0">
-                <div className='hidden lg:block'>
-                    <button className="text-blue text-lg font-medium ml-2 py-2 px-6 transition duration-150 ease-in-out leafbutton bg-lightblue hover:text-white hover:bg-blue" onClick={openModal}>
-                        Sign up
-                    </button>
-                </div>
-            </div>
-
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>
                     {/* Background overlay */}

@@ -4,7 +4,7 @@ import React from "react";
 import { useRef } from "react";
 import Register, { RegisterHandle } from "../Navbar/Signupdlg";
 import Login, { LoginHandle } from "../Navbar/Signindlg";
-import { useSession, signOut } from "next-auth/react"; // ✅ import session + signOut
+import { useSession } from "next-auth/react"; // ✅ import session + signOut
 import { useRouter } from "next/navigation";
 
 
@@ -19,7 +19,7 @@ const navigation: NavigationItem[] = [
   { name: 'Contacts', href: '/contacts', current: false },
   { name: 'Billing', href: '/billing', current: false },
   { name: 'Settings', href: '/settings', current: false },
-  { name: 'More', href: '', current: false },
+  // { name: 'More', href: '', current: false },
 ]
 
 function classNames(...classes: string[]) {
