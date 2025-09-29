@@ -7,7 +7,8 @@ import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 // in your Register component
 import { signIn } from "next-auth/react";
-
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 
 const Register = () => {
@@ -17,6 +18,7 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
+    const [phone, setPhone] = useState<string | undefined>("");
 
     const closeModal = () => setIsOpen(false);
     const openModal = () => setIsOpen(true);
@@ -31,14 +33,19 @@ const Register = () => {
         const formData = new FormData(form);
         const email = String(formData.get("email") || "");
         const password = String(formData.get("password") || "");
-        const phone = String(formData.get("phone") || "");
+        // const phone = String(formData.get("phone") || "");
         const name = ""; // add a name field in UI if you want
-
+        const payload = {
+            email,
+            password,
+            phone: phone || null, // ✅ use state instead of formData
+            name
+        };
         try {
             const res = await fetch("/api/auth/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password, phone, name }),
+                body: JSON.stringify(payload),
             });
 
             const data = await res.json();
@@ -213,12 +220,20 @@ const Register = () => {
                                             <label htmlFor="phone" className="sr-only">
                                                 Phone number
                                             </label>
-                                            <input
+                                            {/* <input
                                                 id="phone"
                                                 name="phone"
                                                 type="tel"
                                                 className="block w-full rounded-md border border-slate-300 px-3 py-2 text-gray-900 placeholder-slate-400 focus:border-brand-500 focus:ring-brand-500 sm:text-sm"
                                                 placeholder="Phone number (optional)"
+                                            /> */}
+                                            <PhoneInput
+                                                id="phone"
+                                                defaultCountry="US" // ✅ Make US the default
+                                                placeholder="Enter phone number"
+                                                value={phone}
+                                                onChange={setPhone}
+                                                className="block w-full rounded-md border border-slate-300 px-3 py-2 text-gray-900 focus:border-brand-500 focus:ring-brand-500 sm:text-sm"
                                             />
                                         </div>
 
