@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRef } from "react";
-import Signupdialog from "../Navbar/Signupdlg"; // ✅ reuse your existing signup modal
+import Signupdialog from "../Navbar/Signupdlg"; 
 
 interface ProductType {
     id: number;
