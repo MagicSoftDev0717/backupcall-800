@@ -2,6 +2,7 @@
 
 // app/api/auth/[...nextauth]/route.ts
 // import NextAuth, { NextAuthConfig } from "next-auth";
+import { type AuthOptions } from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
@@ -13,7 +14,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2023-10-16",
 });
 
-export const authConfig = {
+export const authConfig: AuthOptions = {
     adapter: PrismaAdapter(prisma),
     session: { strategy: "jwt" },
 
