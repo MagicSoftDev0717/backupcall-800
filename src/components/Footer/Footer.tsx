@@ -1,27 +1,56 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { useRef } from "react";
+import Signupdialog from "../Navbar/Signupdlg"; // ✅ reuse your existing signup modal
 
-// MIDDLE LINKS DATA
 interface ProductType {
     id: number;
-    link: string[];
+    link: { name: string; href: string }[];
 }
 
+// Turn links into objects so we know where they go
 const products: ProductType[] = [
     {
         id: 1,
-        link: ['Home', 'Contacts', 'Billing', 'Settings']
+        link: [
+            { name: "Home", href: "/dashboard" },
+            { name: "Contacts", href: "/contacts" },
+            { name: "Billing", href: "/billing" },
+            { name: "Settings", href: "/settings" },
+        ],
     },
     {
         id: 2,
-        link: ['About', 'How it works', 'Pricing', 'Contact', 'FAQ'],
+        link: [
+            { name: "About", href: "#about" },
+            { name: "How it works", href: "#howitworks" },
+            { name: "Pricing", href: "#pricing" },
+            { name: "Contact", href: "#contactus" },
+            { name: "FAQ", href: "#faq" },
+        ],
     },
-
-]
-
+];
 const footer = () => {
+    const { data: session } = useSession();
+    const signupRef = useRef<{ openModal: () => void }>(null);
+
+    const handleFooterClick = (
+        e: React.MouseEvent,
+        href: string,
+        isProtected: boolean
+    ) => {
+        if (isProtected && !session) {
+            e.preventDefault(); // stop navigation
+            signupRef.current?.openModal();
+        }
+    };
     return (
         <div className="bg-darkblue -mt-16">
+            {/* ✅ Include hidden signup modal for footer */}
+            <Signupdialog ref={signupRef} />
             <div className="mx-auto max-w-2xl pt-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="my-2 flex justify-center grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-12 xl:gap-x-8 items-start">
 
@@ -56,16 +85,22 @@ const footer = () => {
                     {/* CLOUMN-2/3 */}
 
                     {products.map((product) => (
-                        <div key={product.id} className="group relative col-span-2 md:col-span-4 lg:col-span-2">
-                            <ul>
-                                {product.link.map((link: string, index: number) => (
-                                    <li key={index} className='mb-5'>
-                                        <Link href="/" className="text-white text-medium font-normal mb-6 space-links">{link}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                    <div key={product.id} className="group relative col-span-2 md:col-span-4 lg:col-span-2">
+                        <ul>
+                            {product.link.map((link, index) => (
+                                <li key={index} className="mb-5">
+                                    <Link
+                                        href={link.href}
+                                        onClick={(e) => handleFooterClick(e, link.href, link.href.startsWith("/"))}
+                                        className="text-white text-medium font-normal mb-6 space-links"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+          ))}
 
                     {/* CLOUMN-4 */}
 
