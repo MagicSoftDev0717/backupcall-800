@@ -28,7 +28,7 @@ const scenarios = [
         alt: "Traveling person",
         caption: "Stay connected while traveling",
         description:
-            "No matter where you travel, dial the 800 number and stay connected to your contacts worldwide.",
+            "No matter where you travel, dial the 888 number and stay connected to your contacts worldwide.",
     },
     {
         id: 4,
@@ -42,7 +42,7 @@ const scenarios = [
         id: 5,
         src: "/assets/hero/5.png",
         alt: "Using someone else's phone",
-        caption: "No phone? Borrow one and call 1-800-Backup",
+        caption: "No phone? Borrow one and call 1-888-Support",
         description:
             "If your phone is lost, stolen, or dead, simply borrow a friend’s or a public phone, dial 1-888-Support, and instantly retrieve your contacts to place calls securely.",
     },
@@ -85,7 +85,7 @@ const Banner = () => {
 
                     <div className="mx-auto max-w-7xl pt-20 pb-3 banner-image text-center">
                         {/* HEADLINE */}
-                        <h1 className="text-4xl font-bold text-navyblue sm:text-5xl lg:text-5xl leading-tight">
+                        <h1 className="text-3xl font-bold text-navyblue sm:text-5xl lg:text-4xl leading-tight">
                             Access your contacts from anywhere <br />and call at any time.
                         </h1>
                         <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
