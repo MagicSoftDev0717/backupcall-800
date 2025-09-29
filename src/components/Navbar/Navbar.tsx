@@ -76,9 +76,7 @@ const Navbar = () => {
                 ))}
 
                 <Link
-                    // key={item.name}
                     href="/#pricing"
-                    // onClick={() => handleNavClick(item.href)}
                     className="px-3 py-2 text-lg font-medium text-beach hover:text-darkgray"
                   >
                     Pricing
