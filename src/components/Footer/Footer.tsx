@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRef } from "react";
-import Signupdialog from "../Navbar/Signupdlg"; 
+import Signupdialog from "../Navbar/Signupdlg";
 
 interface ProductType {
     id: number;
@@ -85,22 +85,22 @@ const footer = () => {
                     {/* CLOUMN-2/3 */}
 
                     {products.map((product) => (
-                    <div key={product.id} className="group relative col-span-2 md:col-span-4 lg:col-span-2">
-                        <ul>
-                            {product.link.map((link, index) => (
-                                <li key={index} className="mb-5">
-                                    <Link
-                                        href={link.href}
-                                        onClick={(e) => handleFooterClick(e, link.href, link.href.startsWith("/"))}
-                                        className="text-white text-medium font-normal mb-6 space-links"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-          ))}
+                        <div key={product.id} className="group relative col-span-2 md:col-span-4 lg:col-span-2">
+                            <ul>
+                                {product.link.map((link, index) => (
+                                    <li key={index} className="mb-5">
+                                        <Link
+                                            href={link.href}
+                                            onClick={(e) => handleFooterClick(e, link.href, link.href.startsWith("/"))}
+                                            className="text-white text-medium font-normal mb-6 space-links"
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
 
                     {/* CLOUMN-4 */}
 
