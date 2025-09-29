@@ -14,7 +14,7 @@ const Pricing = () => {
         <div className="mt-12 mx-auto max-w-md rounded-2xl border border-bluegray bg-white p-8 shadow-soft">
           <div className="flex items-end gap-2">
             <span className="text-4xl font-bold">$0.05</span>
-            <span className="text-slate-500 mb-2">/ minute</span>
+            <span className=" text-xl text-slate-500">/ minute</span>
           </div>
           <ul className="mt-6 text-lg space-y-3 text-slate-700">
             <li className="flex items-center gap-4">

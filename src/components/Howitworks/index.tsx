@@ -8,7 +8,7 @@ interface whydata {
 const whydata: whydata[] = [
     {
         heading: "Sync your contacts",
-        subheading: "Connect your Google account to import your address book securely.",
+        subheading: "Connect your Google account to import your contacts phone numbers.",
     },
     {
         heading: "Dial the 888-Support number",

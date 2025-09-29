@@ -14,9 +14,9 @@ const Proof = () => {
                     {/* RIGHT: copy */}
                     <div>
                         <h2 className="text-3xl text-center lg:text-4xl font-semibold text-midnightblue">
-                            Simple. Private. Carrier-grade.
+                            Simple, Private, Carrier-grade
                         </h2>
-                        <p className="mt-4 text-bluegray">
+                        <p className="text-lg mt-4 text-bluegray">
                             Dial one 888 number, search by voice or keypad, and connect instantly.
                             Your contacts stay encrypted, and calls route over reliable carrier-grade
                             infrastructure for clear, dependable connections.
