@@ -129,7 +129,7 @@ const Navbar = () => {
                   >
                     <Menu.Items className="absolute right-0 mt-6 w-48 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="px-4 py-2 text-sm text-darkgray">
-                        {session.user?.name}
+                        {session.user?.email}
                       </div>
                       <Menu.Item>
                         {({ active }) => (
