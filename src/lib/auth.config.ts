@@ -11,7 +11,7 @@ import bcrypt from "bcryptjs";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: "2023-10-16",
+  apiVersion: "2025-08-27.basil", // ✅ matches your installed stripe version types
 });
 
 export const authConfig: AuthOptions = {
