@@ -125,14 +125,16 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
               {!session ? (
                 <>
-                  {/* Show Sign In / Sign Up if not logged in */}
-                  <Signindialog />
-                  <button
-                    onClick={() => signupRef.current?.openModal()}
-                    className="text-blue text-lg font-medium ml-2 py-2 px-6 transition duration-150 ease-in-out leafbutton bg-lightblue hover:text-white hover:bg-blue"
-                  >
-                    Sign up
-                  </button>
+                  <div className="hidden lg:flex items-center gap-4">
+                    {/* Show Sign In / Sign Up if not logged in */}
+                    <Signindialog />
+                    <button
+                      onClick={() => signupRef.current?.openModal()}
+                      className="text-blue text-lg font-medium ml-2 py-2 px-6 transition duration-150 ease-in-out leafbutton bg-lightblue hover:text-white hover:bg-blue"
+                    >
+                      Sign up
+                    </button>
+                  </div>
                 </>
               ) : (
                 <Menu as="div" className="relative">

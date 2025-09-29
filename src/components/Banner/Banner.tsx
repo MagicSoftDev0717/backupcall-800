@@ -100,7 +100,7 @@ const Banner = () => {
                             <button className="bg-blue text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300"
                                 onClick={() => registerRef.current?.openModal()} // ✅ Trigger modal
                             >
-                                Get Started – it&apos;s Free
+                                Get started for free
                             </button>
                             <button className="border border-lightgrey text-blue font-medium px-8 py-4 rounded-full hover:bg-blue hover:text-white hover:shadow-lg hover:-translate-y-1 transform transition-all duration-300">
                                 See How It Works
