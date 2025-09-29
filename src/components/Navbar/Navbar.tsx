@@ -8,17 +8,20 @@ import { useSession, signOut } from "next-auth/react"; // ✅ import session + s
 import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
 import Signdialog from "./Signindlg";
-import Signupdialog from "./Signupdlg";
 import Logo from "../Logo";
 
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
+
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
+import Signupdialog, { RegisterHandle } from "./Signupdlg"; // ✅ import with forwardRef
 
 const mainLinks = [
   { name: "Home", href: "/dashboard" },
   { name: "Contacts", href: "/contacts" },
   { name: "Billing", href: "/billing" },
   { name: "Settings", href: "/settings" },
-  { name: "Pricing", href: "#pricing" },
+  // { name: "Pricing", href: "#pricing" },
 ];
 
 const dropdownLinks = [
@@ -31,9 +34,25 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+
+
 const Navbar = () => {
+
   const [isOpen, setIsOpen] = React.useState(false);
   const { data: session } = useSession(); // ✅ get session data
+
+  const router = useRouter();
+  const signupRef = useRef<RegisterHandle>(null); // ✅ access signup modal
+
+  const handleNavClick = (href: string) => {
+    if (!session) {
+      // User is not logged in → open sign-up modal
+      signupRef.current?.openModal();
+    } else {
+      // Logged in → navigate normally
+      router.push(href);
+    }
+  };
   return (
     <Disclosure as="nav" className="navbar">
       <>
@@ -44,20 +63,30 @@ const Navbar = () => {
               <Logo />
 
               <div className="absolute left-1/2 transform -translate-x-1/2 hidden lg:flex items-center space-x-6">
-              {/* <div className="hidden lg:flex items-center ml-10 space-x-6"> */}
+                {/* <div className="hidden lg:flex items-center ml-10 space-x-6"> */}
                 {mainLinks.map((item) => (
-                  <Link
+                  <button
                     key={item.name}
-                    href={item.href}
-                    className="px-3 py-2 text-lg font-medium text-slate-700 hover:text-slate-900"
+                    // href={item.href}
+                    onClick={() => handleNavClick(item.href)}
+                    className="px-3 py-2 text-lg font-medium text-beach hover:text-darkgray"
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 ))}
+
+                <Link
+                    // key={item.name}
+                    href="/#pricing"
+                    // onClick={() => handleNavClick(item.href)}
+                    className="px-3 py-2 text-lg font-medium text-beach hover:text-darkgray"
+                  >
+                    Pricing
+                  </Link>
 
                 {/* DROPDOWN MENU */}
                 <Menu as="div" className="relative">
-                  <Menu.Button className="inline-flex items-center gap-1 px-3 py-2 text-lg font-medium text-slate-700 hover:text-slate-900">
+                  <Menu.Button className="inline-flex items-center gap-1 px-3 py-2 text-lg font-medium text-beach hover:text-darkgray">
                     More
                     <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
                   </Menu.Button>
@@ -78,7 +107,7 @@ const Navbar = () => {
                             <Link
                               href={item.href}
                               className={classNames(
-                                active ? "bg-slate-100 text-slate-900" : "text-slate-700",
+                                active ? "bg-slate-100  text-center text-darkgray" : "text-center text-beach",
                                 "block px-4 py-2 text-sm"
                               )}
                             >

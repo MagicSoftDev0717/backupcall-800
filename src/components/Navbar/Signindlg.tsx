@@ -1,14 +1,21 @@
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, forwardRef, useImperativeHandle } from "react";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 
+// import PhoneInput from "react-phone-number-input";
+// import "react-phone-number-input/style.css";
+
 import { signIn } from "next-auth/react";
 
-const Signin = () => {
+export interface LoginHandle {
+    openModal: () => void;
+}
+
+const Signin = forwardRef<LoginHandle>((props, ref) => {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -17,6 +24,10 @@ const Signin = () => {
 
     const closeModal = () => setIsOpen(false);
     const openModal = () => setIsOpen(true);
+
+    useImperativeHandle(ref, () => ({
+        openModal,
+    }));
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,7 +71,7 @@ const Signin = () => {
         <>
             <div className="absolute inset-y-0 right-0 flex items-center sm:static sm:inset-auto sm:pr-0">
                 <div className='hidden lg:block'>
-                    <button type="button" className='text-lg text-blue font-medium' onClick={openModal}>
+                    <button type="button" className='text-lg text-blue font-medium hover:text-blue-500' onClick={openModal}>
                         Log In
                     </button>
                 </div>
@@ -193,7 +204,7 @@ const Signin = () => {
                                         </div>
 
                                         {/* Optional Phone Number */}
-                                        <div>
+                                        {/* <div>
                                             <label htmlFor="phone" className="sr-only">
                                                 Phone number
                                             </label>
@@ -204,7 +215,7 @@ const Signin = () => {
                                                 className="block w-full rounded-md border border-slate-300 px-3 py-2 text-gray-900 placeholder-slate-400 focus:border-brand-500 focus:ring-brand-500 sm:text-sm"
                                                 placeholder="Phone number (optional)"
                                             />
-                                        </div>
+                                        </div> */}
 
                                         {/* Remember me + Forgot password */}
                                         <div className="flex items-center justify-between">
@@ -264,7 +275,7 @@ const Signin = () => {
             </Transition>
         </>
     );
-};
-
+});
+Signin.displayName = "Login"; // Required for forwardRef
 export default Signin;
 

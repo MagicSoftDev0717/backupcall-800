@@ -1,6 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
+import { useRef } from "react";
+import Register, { RegisterHandle } from "../Navbar/Signupdlg";
+import Login, { LoginHandle } from "../Navbar/Signindlg";
+
 interface NavigationItem {
   name: string;
   href: string;
@@ -20,6 +24,8 @@ function classNames(...classes: string[]) {
 }
 
 const Data = () => {
+  const registerRef = useRef<RegisterHandle>(null);
+  const loginRef = useRef<LoginHandle>(null);
   return (
     <div className="rounded-md max-w-sm w-full mx-auto">
       <div className="flex-1 space-y-4 py-1">
@@ -39,15 +45,20 @@ const Data = () => {
               </Link>
             ))}
             <div className="mt-4"></div>
-            <button className="bg-white w-full text-blue border border-lightblue font-medium py-2 px-4 rounded">
+            <button className="bg-white w-full text-blue border border-lightblue font-medium py-2 px-4 rounded"
+              onClick={() => loginRef.current?.openModal()}>
               Sign In
             </button>
-            <button className="bg-lightblue w-full hover:bg-blue hover:text-white text-blue font-medium my-2 py-2 px-4 rounded">
+            <button className="bg-lightblue w-full hover:bg-blue hover:text-white text-blue font-medium my-2 py-2 px-4 rounded"
+              onClick={() => registerRef.current?.openModal()}>
               Sign up
             </button>
           </div>
         </div>
       </div>
+      {/* Mount the same Sign-up Modal once */}
+      <Register ref={registerRef} />
+      <Login ref={loginRef} />
     </div>
   );
 }

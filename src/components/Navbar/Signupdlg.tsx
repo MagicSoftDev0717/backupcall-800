@@ -1,17 +1,22 @@
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, forwardRef, useImperativeHandle } from "react";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
-// in your Register component
-import { signIn } from "next-auth/react";
+
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
+// in your Register component
+import { signIn } from "next-auth/react";
 
-const Register = () => {
+export interface RegisterHandle {
+    openModal: () => void;
+}
+
+const Register = forwardRef<RegisterHandle>((props, ref) => {
     const router = useRouter();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +27,11 @@ const Register = () => {
 
     const closeModal = () => setIsOpen(false);
     const openModal = () => setIsOpen(true);
+
+    // Expose `openModal` to parent components
+    useImperativeHandle(ref, () => ({
+        openModal,
+    }));
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -290,6 +300,7 @@ const Register = () => {
             </Transition>
         </>
     );
-};
+});
 
+Register.displayName = "Register"; // Required for forwardRef
 export default Register;
