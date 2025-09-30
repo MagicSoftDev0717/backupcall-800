@@ -1,53 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Users, PhoneCall, RefreshCw, ShieldCheck, History } from "lucide-react";
-import Logo from "../Logo/index";
 
 export default function Dashboard() {
     // Temporary mock data (replace with real data from backend)
-    const [contactsCount, setContactsCount] = useState(42);
-    const [lastCall, setLastCall] = useState({
-        contact: "John Smith",
-        duration: "3m 15s",
-        cost: "$0.15",
-    });
+    const [loading, setLoading] = useState(true);
+    const [contactsCount, setContactsCount] = useState(0);
+    const [lastCall, setLastCall] = useState<any>(null);
 
-    const handleSyncContacts = () => {
-        // TODO: call backend API for Google Contacts resync
-        alert("Contacts sync started!");
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const res = await fetch("/api/dashboard/summary");
+                if (!res.ok) throw new Error("Failed to fetch dashboard data");
+                const data = await res.json();
+                setContactsCount(data.contactsCount);
+                setLastCall(data.lastCall);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
+
+    const handleSyncContacts = async () => {
+        try {
+            const res = await fetch("/api/contacts/sync", { method: "POST" });
+            if (!res.ok) throw new Error("Sync failed");
+            alert("Contacts synced!");
+        } catch (err) {
+            alert("Failed to sync contacts.");
+        }
     };
 
-    const handleVerifyCallerId = () => {
-        // TODO: trigger SMS verification flow
-        alert("Verification code sent to your phone.");
+    const handleVerifyCallerId = async () => {
+        await fetch("/api/verify/start", { method: "POST" });
+        alert("Verification code sent!");
     };
+
+    if (loading) return <p className="text-center mt-20">Loading dashboard...</p>;
 
     return (
         <div className="min-h-screen bg-lightblue pt-28 pb-10">
-            {/* TOP NAV */}
-            {/* <header className="bg-white border-b border-slate-200 shadow-sm">
-                <div className="container flex h-16 items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2">
-                        <Logo />
-                    </Link>
-
-                    <nav className="flex items-center gap-6">
-                        <Link href="/contacts" className="text-slate-700 hover:text-slate-900">
-                            Contacts
-                        </Link>
-                        <Link href="/billing" className="text-slate-700 hover:text-slate-900">
-                            Billing
-                        </Link>
-                        <Link href="/settings" className="text-slate-700 hover:text-slate-900">
-                            Settings
-                        </Link>
-                        <button className="text-red-600 hover:underline">Logout</button>
-                    </nav>
-                </div>
-            </header> */}
-
             <main className="py-10 max-w-6xl mx-auto">
                 {/* PAGE HEADING */}
                 <header className="mb-8 text-center">
@@ -89,10 +87,18 @@ export default function Dashboard() {
                             </div>
                             <div>
                                 <p className="text-sm text-slate-500">Last call</p>
-                                <p className="text-lg font-semibold">{lastCall.contact}</p>
-                                <p className="text-slate-600">
-                                    {lastCall.duration} • {lastCall.cost}
-                                </p>
+                                {lastCall ? (
+                                    <>
+                                        <p className="text-lg font-semibold">
+                                            {lastCall.contact?.fullName ?? "Unknown contact"}
+                                        </p>
+                                        <p className="text-slate-600">
+                                            {lastCall.duration} • {lastCall.cost}
+                                        </p>
+                                    </>
+                                ) : (
+                                    <p className="text-slate-600 italic">No calls yet</p>
+                                )}
                             </div>
                         </div>
                         <button
