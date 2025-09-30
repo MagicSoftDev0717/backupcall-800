@@ -30,6 +30,7 @@ export default function Dashboard() {
     const handleSyncContacts = async () => {
         try {
             const res = await fetch("/api/contacts/sync", { method: "POST" });
+            console.log(res);
             if (!res.ok) throw new Error("Sync failed");
             alert("Contacts synced!");
         } catch (err) {
