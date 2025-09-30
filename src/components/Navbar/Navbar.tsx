@@ -137,6 +137,7 @@ const Navbar = () => {
                   </div>
                 </>
               ) : (
+                <div className="hidden lg:flex items-center gap-4">
                 <Menu as="div" className="relative">
                   <Menu.Button className="flex items-center focus:outline-none">
                     {/* User avatar or fallback circle with first letter */}
@@ -183,6 +184,7 @@ const Navbar = () => {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+                </div>
               )}
             </div>
 

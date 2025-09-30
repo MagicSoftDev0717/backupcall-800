@@ -293,7 +293,7 @@ export default function ContactsPage() {
 
         {/* CONTACT LIST */}
         {filteredContacts.length > 0 ? (
-          <ul className="mt-8 mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filteredContacts.map((contact) => (
               <li
                 key={contact.id}
