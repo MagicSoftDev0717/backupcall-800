@@ -28,6 +28,7 @@ export async function POST(req: Request) {
         billedSeconds: duration,
       },
     });
+
   }
 
   return NextResponse.json({ received: true });
