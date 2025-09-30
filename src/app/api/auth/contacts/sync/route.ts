@@ -5,48 +5,64 @@ import { authConfig } from "@/lib/auth.config";
 import { prisma } from "@/lib/prisma";
 
 export async function POST() {
-  const session = await getServerSession(authConfig);
-  if (!session?.user?.email) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+    const session = await getServerSession(authConfig);
+    if (!session?.user?.email) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-  const user = await prisma.user.findUnique({ where: { email: session.user.email } });
-  if (!user?.googleSub) {
-    return NextResponse.json({ error: "Google account not linked" }, { status: 400 });
-  }
+    const user = await prisma.user.findUnique({ where: { email: session.user.email } });
+    if (!user) {
+        return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
 
-  // Example: call Google People API
-  // (assumes you’ve stored and refreshed access tokens for the user)
-  const res = await fetch(
-    "https://people.googleapis.com/v1/people/me/connections?personFields=names,emailAddresses,phoneNumbers",
-    { headers: { Authorization: `Bearer ${user.googleAccessToken}` } } as any
-  );
-  const data = await res.json();
-
-  if (!data.connections) {
-    return NextResponse.json({ error: "No contacts found" }, { status: 404 });
-  }
-
-  for (const c of data.connections) {
-    const fullName = c.names?.[0]?.displayName ?? "Unknown";
-    const phoneE164 = c.phoneNumbers?.[0]?.value ?? null;
-    const email = c.emailAddresses?.[0]?.value ?? null;
-    if (!phoneE164) continue;
-
-    await prisma.contact.upsert({
-      where: {
-        userId_fullName: { userId: user.id, fullName }, // or a compound unique index
-      },
-      update: { phoneE164, email, source: "google" },
-      create: {
-        userId: user.id,
-        source: "google",
-        fullName,
-        phoneE164,
-        email,
-      },
+    // Get Google account for this user
+    const account = await prisma.account.findFirst({
+        where: {
+            userId: user.id,
+            provider: "google",
+        },
     });
-  }
 
-  return NextResponse.json({ message: "Contacts synced successfully" });
+    const accessToken = account?.access_token;
+    if (!accessToken) {
+        return NextResponse.json(
+            { error: "Google access token not found" },
+            { status: 400 }
+        );
+    }
+
+    // Example: call Google People API
+    // (assumes you’ve stored and refreshed access tokens for the user)
+    const res = await fetch(
+        "https://people.googleapis.com/v1/people/me/connections?personFields=names,emailAddresses,phoneNumbers",
+        { headers: { Authorization: `Bearer ${accessToken}` } },
+    );
+    const data = await res.json();
+
+    if (!data.connections) {
+        return NextResponse.json({ error: "No contacts found" }, { status: 404 });
+    }
+
+    for (const c of data.connections) {
+        const fullName = c.names?.[0]?.displayName ?? "Unknown";
+        const phoneE164 = c.phoneNumbers?.[0]?.value ?? null;
+        const email = c.emailAddresses?.[0]?.value ?? null;
+        if (!phoneE164) continue;
+
+        await prisma.contact.upsert({
+            where: {
+                userId_fullName: { userId: user.id, fullName }, // or a compound unique index
+            },
+            update: { phoneE164, email, source: "google" },
+            create: {
+                userId: user.id,
+                source: "google",
+                fullName,
+                phoneE164,
+                email,
+            },
+        });
+    }
+
+    return NextResponse.json({ message: "Contacts synced successfully" });
 }

@@ -26,6 +26,7 @@ model User {
   stripeId      String?
   googleSub     String?
   createdAt     DateTime  @default(now())
+  
   accounts      Account[]
   calls         Call[]
   contacts      Contact[]
