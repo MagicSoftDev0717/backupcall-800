@@ -10,6 +10,11 @@ export default function Dashboard() {
     const [contactsCount, setContactsCount] = useState(0);
     const [lastCall, setLastCall] = useState<any>(null);
 
+    // Caller ID verification UI state
+    const [showOtpInput, setShowOtpInput] = useState(false);
+    const [otp, setOtp] = useState("");
+    const [verifying, setVerifying] = useState(false);
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -41,6 +46,40 @@ export default function Dashboard() {
     const handleVerifyCallerId = async () => {
         await fetch("/api/verify/start", { method: "POST" });
         alert("Verification code sent!");
+    };
+
+    // const handleVerifyCallerId = async () => {
+    //     const res = await fetch("/api/verify/start", { method: "POST" });
+    //      const data = await res.json();
+    //     if (res.ok) {
+    //         setShowOtpInput(true);
+    //         alert(data.message || "Verification code sent to your phone!");
+    //     } else {
+    //         alert(data.error || "Failed to send verification code.");
+    //     }
+    // };
+
+    const handleCheckCode = async () => {
+        setVerifying(true);
+        try {
+            const res = await fetch("/api/verify/check", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ code: otp }),
+            });
+            const data = await res.json();
+            if (res.ok) {
+                alert("Phone number verified!");
+                setShowOtpInput(false);
+                setOtp("");
+            } else {
+                alert(data.error || "Invalid code, please try again.");
+            }
+        } catch (err) {
+            alert("Verification failed. Try again.");
+        } finally {
+            setVerifying(false);
+        }
     };
 
     if (loading) return <p className="text-center mt-20">Loading dashboard...</p>;
@@ -83,7 +122,7 @@ export default function Dashboard() {
                     {/* Last Call Summary */}
                     <div className="rounded-2xl bg-white p-6 shadow-soft flex flex-col justify-between">
                         <div className="flex items-center gap-3">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-green-700">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                                 <PhoneCall className="h-6 w-6" />
                             </div>
                             <div>
@@ -102,13 +141,32 @@ export default function Dashboard() {
                                 )}
                             </div>
                         </div>
-                        <button
-                            onClick={handleVerifyCallerId}
-                            className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
-                        >
-                            <ShieldCheck className="h-4 w-4 text-brand-600" />
-                            Verify Caller ID
-                        </button>
+                        {!showOtpInput ? (
+                            <button
+                                onClick={handleVerifyCallerId}
+                                className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+                            >
+                                <ShieldCheck className="h-4 w-4 text-brand-600" />
+                                Verify Caller ID
+                            </button>
+                        ) : (
+                            <div className="mt-4 flex flex-col gap-2">
+                                <input
+                                    type="text"
+                                    value={otp}
+                                    onChange={(e) => setOtp(e.target.value)}
+                                    placeholder="Enter verification code"
+                                    className="rounded-lg border px-3 py-2 text-sm"
+                                />
+                                <button
+                                    onClick={handleCheckCode}
+                                    disabled={verifying}
+                                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 transition"
+                                >
+                                    {verifying ? "Verifying..." : "Submit Code"}
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
 

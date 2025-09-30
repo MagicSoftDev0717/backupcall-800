@@ -40,6 +40,7 @@ model Contact {
   fullName  String
   phoneE164 String
   email     String?
+  favorite  Boolean  @default(false)   
   updatedAt DateTime @updatedAt
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 

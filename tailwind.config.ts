@@ -29,6 +29,7 @@ module.exports = {
       'grey500': '#ECECEC',
       'bluegray': "#7D82A1",
       'bluegrey': "#7C8F9E",
+      'yellow-500': "#ffde21ff",
       'midnightblue': '#183B56',
       'midblue': '#00276F',
       'bluebg': "rgba(47, 184, 227, 0.2)",
