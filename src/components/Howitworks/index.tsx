@@ -11,7 +11,7 @@ const whydata: whydata[] = [
         subheading: "Connect your Google account to import your contacts phone numbers.",
     },
     {
-        heading: "Dial the 888-Support number",
+        heading: "Dial  888-Support or 888-787-7678",
         subheading: "Say a name or use the keypad menu. We’ll find the right contact.",
     },
     {
