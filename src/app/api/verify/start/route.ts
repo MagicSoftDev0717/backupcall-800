@@ -18,20 +18,20 @@ export async function POST() {
     return NextResponse.json({ error: "No phone number on file" }, { status: 400 });
   }
 
-  await client.verify.v2
-    .services(process.env.TWILIO_VERIFY_SERVICE_SID!)
-    .verifications.create({ to: user.phoneE164, channel: "sms" });
+  // await client.verify.v2
+  //   .services(process.env.TWILIO_VERIFY_SERVICE_SID!)
+  //   .verifications.create({ to: user.phoneE164, channel: "sms" });
 
-  return NextResponse.json({ message: "Verification code sent" });
+  // return NextResponse.json({ message: "Verification code sent" });
 
-  // try {
-  //   const verification = await client.verify.v2
-  //     .services(process.env.TWILIO_VERIFY_SERVICE_SID!)
-  //     .verifications.create({ to: user.phoneE164, channel: "sms" });
+  try {
+    const verification = await client.verify.v2
+      .services(process.env.TWILIO_VERIFY_SERVICE_SID!)
+      .verifications.create({ to: user.phoneE164, channel: "sms" });
 
-  //   return NextResponse.json({ message: "Verification code sent", status: verification.status });
-  // } catch (err: any) {
-  //   console.error("Twilio verify error:", err);
-  //   return NextResponse.json({ error: "Failed to send verification code" }, { status: 500 });
-  // }
+    return NextResponse.json({ message: "Verification code sent", status: verification.status });
+  } catch (err: any) {
+    console.error("Twilio verify error:", err);
+    return NextResponse.json({ error: "Failed to send verification code" }, { status: 500 });
+  }
 }

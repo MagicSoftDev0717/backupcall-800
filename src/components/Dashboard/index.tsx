@@ -43,21 +43,21 @@ export default function Dashboard() {
         }
     };
 
-    const handleVerifyCallerId = async () => {
-        await fetch("/api/verify/start", { method: "POST" });
-        alert("Verification code sent!");
-    };
-
     // const handleVerifyCallerId = async () => {
-    //     const res = await fetch("/api/verify/start", { method: "POST" });
-    //      const data = await res.json();
-    //     if (res.ok) {
-    //         setShowOtpInput(true);
-    //         alert(data.message || "Verification code sent to your phone!");
-    //     } else {
-    //         alert(data.error || "Failed to send verification code.");
-    //     }
+    //     await fetch("/api/verify/start", { method: "POST" });
+    //     alert("Verification code sent!");
     // };
+
+    const handleVerifyCallerId = async () => {
+        const res = await fetch("/api/verify/start", { method: "POST" });
+         const data = await res.json();
+        if (res.ok) {
+            setShowOtpInput(true);
+            alert(data.message || "Verification code sent to your phone!");
+        } else {
+            alert(data.error || "Failed to send verification code.");
+        }
+    };
 
     const handleCheckCode = async () => {
         setVerifying(true);
