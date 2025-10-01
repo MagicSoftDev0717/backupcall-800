@@ -50,7 +50,7 @@ export default function Dashboard() {
 
     const handleVerifyCallerId = async () => {
         const res = await fetch("/api/verify/start", { method: "POST" });
-         const data = await res.json();
+        const data = await res.json();
         if (res.ok) {
             setShowOtpInput(true);
             alert(data.message || "Verification code sent to your phone!");
@@ -81,6 +81,32 @@ export default function Dashboard() {
             setVerifying(false);
         }
     };
+
+    const handleCall = async (phone?: string) => {
+        if (!phone) {
+            alert("No phone number available.");
+            return;
+        }
+
+        try {
+            const res = await fetch("/api/call/start", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ to: phone }),
+            });
+
+            if (res.ok) {
+                alert("Call started!");
+            } else {
+                const err = await res.json();
+                alert("Failed to start call: " + (err.error || "Unknown error"));
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Error connecting the call.");
+        }
+    };
+
 
     if (loading) return <p className="text-center mt-20">Loading dashboard...</p>;
 
@@ -167,6 +193,17 @@ export default function Dashboard() {
                                 </button>
                             </div>
                         )}
+
+                        {/* Call button (enabled if lastCall exists) */}
+                        {lastCall && (
+                            <button
+                                onClick={() => handleCall(lastCall.contact?.phoneE164)}
+                                className="inline-flex items-center justify-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700 transition"
+                            >
+                                <PhoneCall className="h-4 w-4" />
+                                Call Again
+                            </button>
+                        )}
                     </div>
                 </div>
 
@@ -174,7 +211,7 @@ export default function Dashboard() {
                 <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     <Link
                         href="/contacts"
-                        className="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-soft hover:shadow-md transition"
+                        className="flex flex-col items-center justify-center rounded-2xl border border-blue-500 bg-white p-8 text-center shadow-soft hover:shadow-md transition"
                     >
                         <Users className="h-10 w-10 text-brand-600" />
                         <span className="mt-3 text-lg font-semibold">View My Contacts</span>
@@ -182,7 +219,7 @@ export default function Dashboard() {
 
                     <Link
                         href="/history"
-                        className="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-soft hover:shadow-md transition"
+                        className="flex flex-col items-center justify-center rounded-2xl border border-blue-500 bg-white p-8 text-center shadow-soft hover:shadow-md transition"
                     >
                         <History className="h-10 w-10 text-brand-600" />
                         <span className="mt-3 text-lg font-semibold">View Call History</span>
@@ -190,7 +227,7 @@ export default function Dashboard() {
 
                     <Link
                         href="/billing"
-                        className="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-soft hover:shadow-md transition"
+                        className="flex flex-col items-center justify-center rounded-2xl border border-blue-500 bg-white p-8 text-center shadow-soft hover:shadow-md transition"
                     >
                         <PhoneCall className="h-10 w-10 text-brand-600" />
                         <span className="mt-3 text-lg font-semibold">Manage Billing</span>

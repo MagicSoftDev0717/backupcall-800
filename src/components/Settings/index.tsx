@@ -50,7 +50,7 @@ export default function SettingsPage() {
         </h1>
 
         {/* PROFILE SECTION */}
-        <section className="mt-8 rounded-2xl bg-white border border-grey500 p-6 shadow">
+        <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
           <h2 className="text-xl font-semibold text-midnightblue">Profile</h2>
           <div className="mt-4 space-y-4">
             <div>
@@ -61,7 +61,7 @@ export default function SettingsPage() {
                 type="text"
                 value={profile.name}
                 onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-                className="mt-1 block w-full rounded-lg border border-grey500 px-3 py-2 text-midnightblue placeholder-bluegray focus:border-blue focus:ring-1 focus:ring-blue sm:text-sm"
+                className="mt-1 block w-full rounded-lg border border-grey-500 px-3 py-2 text-midnightblue placeholder-bluegray focus:border-blue focus:ring-1 focus:ring-blue sm:text-sm"
               />
             </div>
             <div>
@@ -72,14 +72,14 @@ export default function SettingsPage() {
                 type="email"
                 value={profile.email}
                 onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                className="mt-1 block w-full rounded-lg border border-grey500 px-3 py-2 text-midnightblue placeholder-bluegray focus:border-blue focus:ring-1 focus:ring-blue sm:text-sm"
+                className="mt-1 block w-full rounded-lg border border-grey-500 px-3 py-2 text-midnightblue placeholder-bluegray focus:border-blue focus:ring-1 focus:ring-blue sm:text-sm"
               />
             </div>
           </div>
         </section>
 
         {/* PHONE VERIFICATION SECTION */}
-        <section className="mt-8 rounded-2xl bg-white border border-grey500 p-6 shadow">
+        <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
           <h2 className="text-xl font-semibold flex items-center gap-2 text-midnightblue">
             <Phone className="h-5 w-5 text-blue" /> Phone Verification
           </h2>
@@ -88,7 +88,7 @@ export default function SettingsPage() {
               type="tel"
               value={profile.phone}
               onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
-              className="block w-full rounded-lg border border-grey500 px-3 py-2 text-midnightblue placeholder-bluegray focus:border-blue focus:ring-1 focus:ring-blue sm:text-sm"
+              className="block w-full rounded-lg border border-grey-500 px-3 py-2 text-midnightblue placeholder-bluegray focus:border-blue focus:ring-1 focus:ring-blue sm:text-sm"
             />
             {!profile.phoneVerified ? (
               <>
@@ -103,11 +103,11 @@ export default function SettingsPage() {
                   placeholder="Enter verification code"
                   value={smsCode}
                   onChange={(e) => setSmsCode(e.target.value)}
-                  className="mt-2 block w-full rounded-lg border border-grey500 px-3 py-2 text-midnightblue placeholder-bluegray focus:border-blue focus:ring-1 focus:ring-blue sm:text-sm"
+                  className="mt-2 block w-full rounded-lg border border-grey-500 px-3 py-2 text-midnightblue placeholder-bluegray focus:border-blue focus:ring-1 focus:ring-blue sm:text-sm"
                 />
                 <button
                   onClick={handleVerifyPhone}
-                  className="mt-2 inline-flex items-center gap-2 rounded-lg border border-grey500 bg-white px-4 py-2 text-sm font-medium text-midnightblue hover:bg-lightblue transition"
+                  className="mt-2 inline-flex items-center gap-2 rounded-lg border border-grey-500 bg-white px-4 py-2 text-sm font-medium text-midnightblue hover:bg-lightblue transition"
                 >
                   Verify Phone
                 </button>
@@ -121,7 +121,7 @@ export default function SettingsPage() {
         </section>
 
         {/* PIN SETUP SECTION */}
-        <section className="mt-8 rounded-2xl bg-white border border-grey500 p-6 shadow">
+        <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
           <h2 className="text-xl font-semibold flex items-center gap-2 text-midnightblue">
             <Key className="h-5 w-5 text-blue" /> IVR PIN
           </h2>
@@ -135,7 +135,7 @@ export default function SettingsPage() {
               placeholder="••••"
               value={profile.pin}
               onChange={(e) => setProfile({ ...profile, pin: e.target.value })}
-              className="block w-28 rounded-lg border border-grey500 px-3 py-2 text-center tracking-widest text-lg text-midnightblue focus:border-blue focus:ring-1 focus:ring-blue"
+              className="block w-28 rounded-lg border border-grey-500 px-3 py-2 text-center tracking-widest text-lg text-midnightblue focus:border-blue focus:ring-1 focus:ring-blue"
             />
             <button
               onClick={handlePinUpdate}
@@ -150,7 +150,7 @@ export default function SettingsPage() {
         <section className="mt-8 flex flex-col gap-4">
           <button
             onClick={handleDisconnectGoogleContacts}
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-grey500 bg-white px-4 py-3 text-sm font-medium text-midnightblue hover:bg-lightblue transition"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-grey-500 bg-white px-4 py-3 text-sm font-medium text-midnightblue hover:bg-lightblue transition"
           >
             <Unplug className="h-4 w-4 text-blue" />
             Disconnect Google Contacts

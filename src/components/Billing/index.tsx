@@ -66,7 +66,7 @@ export default function BillingPage() {
         </h1>
 
         {/* PAYMENT METHOD CARD */}
-        <section className="mt-8 rounded-2xl bg-white border border-grey500 p-6 shadow">
+        <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
           <h2 className="text-xl font-semibold flex items-center gap-2 text-midnightblue">
             <CreditCard className="h-5 w-5 text-blue" />
             Payment Method
@@ -111,8 +111,8 @@ export default function BillingPage() {
           </h2>
 
           {callHistory.length > 0 ? (
-            <div className="mt-4 overflow-x-auto rounded-2xl border border-grey500 bg-white shadow">
-              <table className="min-w-full divide-y divide-grey500">
+            <div className="mt-4 overflow-x-auto rounded-2xl border border-grey-500 bg-white shadow">
+              <table className="min-w-full divide-y divide-grey-500">
                 <thead className="bg-lightgrey">
                   <tr>
                     <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
@@ -132,7 +132,7 @@ export default function BillingPage() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-grey500">
+                <tbody className="divide-y divide-grey-500">
                   {callHistory.map((call) => (
                     <tr key={call.id} className="hover:bg-babyblue">
                       <td className="px-4 py-3 text-sm text-midnightblue">
