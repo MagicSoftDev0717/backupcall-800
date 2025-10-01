@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PhoneCall, CloudUpload, ShieldCheck, Search } from "lucide-react";
+import { PhoneCall, CloudUpload, Search } from "lucide-react";
 interface whydata {
     heading: string;
     subheading: string;
