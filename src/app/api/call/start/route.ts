@@ -27,7 +27,7 @@ export async function POST(req: Request) {
   // Save the call to DB immediately
   await prisma.call.create({
     data: {
-      userId: (session.user as any).id,   // cast to any if TS complains
+      userId: (session.user as any).id, 
       twilioCallSid: call.sid,
       startedAt: new Date(),
       status: "initiated",
