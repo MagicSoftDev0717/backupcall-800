@@ -23,6 +23,8 @@ model User {
   passwordHash  String?
   phoneE164     String?   @unique
   pinCode       String?
+  remainingMinutes Int     @default(0)
+  balanceCents     Int     @default(0) // optional: track dollar balance in cents
   stripeId      String?
   googleSub     String?
   createdAt     DateTime  @default(now())
