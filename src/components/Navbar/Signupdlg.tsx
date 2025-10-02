@@ -21,6 +21,8 @@ const Register = forwardRef<RegisterHandle>((props, ref) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [emailpwdLoading, setEmailpwdLoading] = useState(false);
+    
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
     const [phone, setPhone] = useState<string | undefined>("");
@@ -35,7 +37,7 @@ const Register = forwardRef<RegisterHandle>((props, ref) => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoading(true);
+        setEmailpwdLoading(true);
         setErrorMsg("");
         setSuccessMsg("");
 
@@ -72,11 +74,11 @@ const Register = forwardRef<RegisterHandle>((props, ref) => {
 
             if (signInRes?.error) throw new Error(signInRes.error);
 
-            setLoading(false);
+            setEmailpwdLoading(false);
             closeModal();
             router.push("/dashboard");
         } catch (err: any) {
-            setLoading(false);
+            setEmailpwdLoading(false);
             setErrorMsg(err.message || "Something went wrong.");
         }
     };
@@ -272,7 +274,7 @@ const Register = forwardRef<RegisterHandle>((props, ref) => {
 
                                         <button
                                             type="submit"
-                                            disabled={loading}
+                                            disabled={emailpwdLoading}
                                             className="group relative flex w-full justify-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-soft hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
                                         >
                                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -281,7 +283,7 @@ const Register = forwardRef<RegisterHandle>((props, ref) => {
                                                     aria-hidden="true"
                                                 />
                                             </span>
-                                            {loading ? "Creating..." : "Sign up"}
+                                            {emailpwdLoading ? "Creating..." : "Sign up"}
                                         </button>
                                     </form>
                                 </Dialog.Panel>
