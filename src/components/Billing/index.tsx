@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { CreditCard, PlusCircle, Play, Clock } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation";
 
@@ -162,15 +162,16 @@ export default function BillingPage() {
   // };
 
   return (
-    <div className="min-h-screen bg-lightblue pt-28 pb-10">
-      <main className="mx-auto max-w-6xl px-4">
-        {/* PAGE TITLE */}
-        <h1 className="text-3xl font-semibold text-midnightblue">
-          Billing & Call History
-        </h1>
+    <Suspense fallback={<p className="text-center mt-20">Loading billing...</p>}>
+      <div className="min-h-screen bg-lightblue pt-28 pb-10">
+        <main className="mx-auto max-w-6xl px-4">
+          {/* PAGE TITLE */}
+          <h1 className="text-3xl font-semibold text-midnightblue">
+            Billing & Call History
+          </h1>
 
-        {/* PAYMENT METHOD CARD */}
-        {/* <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
+          {/* PAYMENT METHOD CARD */}
+          {/* <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
           <h2 className="text-xl font-semibold flex items-center gap-2 text-midnightblue">
             <CreditCard className="h-5 w-5 text-blue" />
             Payment Method
@@ -208,172 +209,173 @@ export default function BillingPage() {
           )}
         </section> */}
 
-        {/* BALANCE SUMMARY */}
-        <section className="mt-8 rounded-2xl bg-gradient-to-r from-blue-50 via-white to-blue-50 border border-slate-200 p-8 shadow-soft">
-          <h2 className="text-2xl font-bold flex items-center gap-3 text-midnightblue mb-6">
-            <Clock className="h-6 w-6 text-blue" />
-            Account Balance
-          </h2>
+          {/* BALANCE SUMMARY */}
+          <section className="mt-8 rounded-2xl bg-gradient-to-r from-blue-50 via-white to-blue-50 border border-slate-200 p-8 shadow-soft">
+            <h2 className="text-2xl font-bold flex items-center gap-3 text-midnightblue mb-6">
+              <Clock className="h-6 w-6 text-blue" />
+              Account Balance
+            </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* Remaining Minutes Card */}
-            <div className="rounded-xl bg-white shadow-md p-6 flex items-center justify-between border border-slate-100">
-              <div>
-                <p className="text-medium font-semibold text-beach">Remaining Minutes</p>
-                <p className="text-3xl font-bold text-midnightblue">{minutes}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Remaining Minutes Card */}
+              <div className="rounded-xl bg-white shadow-md p-6 flex items-center justify-between border border-slate-100">
+                <div>
+                  <p className="text-medium font-semibold text-beach">Remaining Minutes</p>
+                  <p className="text-3xl font-bold text-midnightblue">{minutes}</p>
+                </div>
+                <div className="h-12 w-12 flex items-center justify-center rounded-full bg-blue-100 text-blue">
+                  <Clock className="h-6 w-6" />
+                </div>
               </div>
-              <div className="h-12 w-12 flex items-center justify-center rounded-full bg-blue-100 text-blue">
-                <Clock className="h-6 w-6" />
+
+              {/* Remaining Balance Card */}
+              <div className="rounded-xl bg-white shadow-md p-6 flex items-center justify-between border border-slate-100">
+                <div>
+                  <p className="text-medium font-semibold text-beach">Remaining Balance</p>
+                  <p className="text-3xl font-bold text-midnightblue">
+                    ${balance.toFixed(2)}
+                  </p>
+                </div>
+                <div className="h-12 w-12 flex items-center justify-center rounded-full bg-green-100 text-green-600">
+                  💳
+                </div>
               </div>
             </div>
+          </section>
 
-            {/* Remaining Balance Card */}
-            <div className="rounded-xl bg-white shadow-md p-6 flex items-center justify-between border border-slate-100">
-              <div>
-                <p className="text-medium font-semibold text-beach">Remaining Balance</p>
-                <p className="text-3xl font-bold text-midnightblue">
-                  ${balance.toFixed(2)}
+          <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
+            <h2 className="text-xl font-semibold flex items-center gap-2 text-midnightblue mb-6">
+              <CreditCard className="h-5 w-5 text-blue" />
+              Purchase Minutes
+            </h2>
+
+            {/* Two cards side by side */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Package Deal */}
+              <div className="rounded-xl border border-slate-200 p-6 flex flex-col justify-between shadow hover:shadow-md transition">
+                <p className="text-beach font-semibold mb-4">
+                  Pro Offer: 120 mins for <span className="font-bold">$4.99</span>
                 </p>
+                <button
+                  onClick={handleBuyPackage}
+                  disabled={loading}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 transition"
+                >
+                  <PlusCircle className="h-4 w-4" />
+                  {loading ? "Redirecting..." : "Buy Package"}
+                </button>
               </div>
-              <div className="h-12 w-12 flex items-center justify-center rounded-full bg-green-100 text-green-600">
-                💳
+
+              {/* Custom Minutes */}
+              <div className="rounded-xl border border-slate-200 p-6 flex flex-col justify-between shadow hover:shadow-md transition">
+                <div className="flex items-center gap-3 mb-4">
+                  <label className="text-beach font-semibold text-medium">Custom Minutes:</label>
+                  <input
+                    type="number"
+                    min={1}
+                    value={customMinutes}
+                    onChange={(e) => setCustomMinutes(parseInt(e.target.value))}
+                    className="w-24 rounded-md border border-grey500 px-2 py-1 text-midnightblue text-sm"
+                  />
+                  <span className="text-beach font-semibold text-medium">
+                    Cost: ${(customMinutes * 0.05).toFixed(2)}
+                  </span>
+                </div>
+                <button
+                  onClick={handleBuyCustom}
+                  disabled={loading}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 transition"
+                >
+                  <PlusCircle className="h-4 w-4" />
+                  {loading ? "Redirecting..." : "Buy Custom"}
+                </button>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
-          <h2 className="text-xl font-semibold flex items-center gap-2 text-midnightblue mb-6">
-            <CreditCard className="h-5 w-5 text-blue" />
-            Purchase Minutes
-          </h2>
-
-          {/* Two cards side by side */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Package Deal */}
-            <div className="rounded-xl border border-slate-200 p-6 flex flex-col justify-between shadow hover:shadow-md transition">
-              <p className="text-beach font-semibold mb-4">
-                Pro Offer: 120 mins for <span className="font-bold">$4.99</span>
-              </p>
-              <button
-                onClick={handleBuyPackage}
-                disabled={loading}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 transition"
-              >
-                <PlusCircle className="h-4 w-4" />
-                {loading ? "Redirecting..." : "Buy Package"}
-              </button>
-            </div>
-
-            {/* Custom Minutes */}
-            <div className="rounded-xl border border-slate-200 p-6 flex flex-col justify-between shadow hover:shadow-md transition">
-              <div className="flex items-center gap-3 mb-4">
-                <label className="text-beach font-semibold text-medium">Custom Minutes:</label>
-                <input
-                  type="number"
-                  min={1}
-                  value={customMinutes}
-                  onChange={(e) => setCustomMinutes(parseInt(e.target.value))}
-                  className="w-24 rounded-md border border-grey500 px-2 py-1 text-midnightblue text-sm"
-                />
-                <span className="text-beach font-semibold text-medium">
-                  Cost: ${(customMinutes * 0.05).toFixed(2)}
-                </span>
-              </div>
-              <button
-                onClick={handleBuyCustom}
-                disabled={loading}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 transition"
-              >
-                <PlusCircle className="h-4 w-4" />
-                {loading ? "Redirecting..." : "Buy Custom"}
-              </button>
-            </div>
-          </div>
-        </section>
+          </section>
 
 
 
-        {/* CALL HISTORY */}
-        <section className="mt-10 mb-10">
-          <h2 className="text-xl font-semibold text-midnightblue">
-            Call History
-          </h2>
+          {/* CALL HISTORY */}
+          <section className="mt-10 mb-10">
+            <h2 className="text-xl font-semibold text-midnightblue">
+              Call History
+            </h2>
 
-          {callHistory.length > 0 ? (
-            <div className="mt-4 overflow-x-auto rounded-2xl border border-grey-500 bg-white shadow">
-              <table className="min-w-full divide-y divide-grey-500">
-                <thead className="bg-lightgrey">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
-                      Date / Time
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
-                      Contact
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
-                      Duration
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
-                      Cost
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
-                      Recording
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-grey-500">
-                  {callHistory.map((call) => (
-                    <tr key={call.id} className="hover:bg-babyblue">
-                      <td className="px-4 py-3 text-sm text-midnightblue">
-                        {call.date}
-                      </td>
-                      <td className="px-4 py-3 text-sm font-medium text-midnightblue">
-                        {call.contact}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-midnightblue">
-                        {call.duration}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-midnightblue">
-                        ${call.cost.toFixed(2)}
-                      </td>
-                      <td className="px-4 py-3 text-sm">
-                        {call.recordingUrl ? (
-                          <a
-                            href={call.recordingUrl}
-                            className="inline-flex items-center gap-1 text-blue hover:text-brand-700"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Play className="h-4 w-4" />
-                            Listen
-                          </a>
-                        ) : (
-                          <span className="text-darkgray">—</span>
-                        )}
+            {callHistory.length > 0 ? (
+              <div className="mt-4 overflow-x-auto rounded-2xl border border-grey-500 bg-white shadow">
+                <table className="min-w-full divide-y divide-grey-500">
+                  <thead className="bg-lightgrey">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
+                        Date / Time
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
+                        Contact
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
+                        Duration
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
+                        Cost
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-midnightblue">
+                        Recording
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-grey-500">
+                    {callHistory.map((call) => (
+                      <tr key={call.id} className="hover:bg-babyblue">
+                        <td className="px-4 py-3 text-sm text-midnightblue">
+                          {call.date}
+                        </td>
+                        <td className="px-4 py-3 text-sm font-medium text-midnightblue">
+                          {call.contact}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-midnightblue">
+                          {call.duration}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-midnightblue">
+                          ${call.cost.toFixed(2)}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          {call.recordingUrl ? (
+                            <a
+                              href={call.recordingUrl}
+                              className="inline-flex items-center gap-1 text-blue hover:text-brand-700"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Play className="h-4 w-4" />
+                              Listen
+                            </a>
+                          ) : (
+                            <span className="text-darkgray">—</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr className="bg-lightgrey">
+                      <td
+                        colSpan={5}
+                        className="px-4 py-3 text-right text-sm font-semibold text-midnightblue"
+                      >
+                        Total this month: ${totalThisMonth.toFixed(2)}
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr className="bg-lightgrey">
-                    <td
-                      colSpan={5}
-                      className="px-4 py-3 text-right text-sm font-semibold text-midnightblue"
-                    >
-                      Total this month: ${totalThisMonth.toFixed(2)}
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          ) : (
-            <p className="mt-4 text-bluegray">
-              No call history available yet.
-            </p>
-          )}
-        </section>
-      </main>
-    </div>
+                  </tfoot>
+                </table>
+              </div>
+            ) : (
+              <p className="mt-4 text-bluegray">
+                No call history available yet.
+              </p>
+            )}
+          </section>
+        </main>
+      </div>
+    </Suspense>
   );
 }
