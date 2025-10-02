@@ -281,7 +281,7 @@ export default function BillingPage() {
                                     className="w-24 rounded-md border border-grey500 px-2 py-1 text-midnightblue text-sm"
                                 />
                                 <span className="text-beach font-semibold text-medium">
-                                    Cost: ${(customMinutes * 0.05).toFixed(2)}
+                                    Cost: ${(customMinutes > 0 ? (customMinutes * 0.05).toFixed(2) : "0.00")}
                                 </span>
                             </div>
                             <button
