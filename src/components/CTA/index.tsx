@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Pricing = () => {
     return (
-      <section className="py-24 bg-lightblue">
+      <section className="py-24 ml-2 mr-2 bg-lightblue">
         <div className="rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 p-10 md:p-14 text-white text-center shadow-soft">
           <h3 className="text-3xl md:text-4xl font-bold">Ready to back up your contacts?</h3>
           <p className="mt-3 text-white/90">

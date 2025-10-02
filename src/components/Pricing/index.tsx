@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 const Pricing = () => {
     return (
-      <section id="pricing" className="py-20 bg-lightblue">
+      <section id="pricing" className="py-20 ml-2 mr-2 bg-lightblue">
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-4xl text-navyblue md:text-5xl lg:text-4xl font-semibold lg:text-center leading-tight">Simple Pricing</h3>
           <p className="text-lg mt-4 text-bluegray">
