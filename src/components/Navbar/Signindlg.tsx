@@ -19,6 +19,7 @@ const Signin = forwardRef<LoginHandle>((props, ref) => {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [emailpwdLoading, setEmailpwdLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
 
@@ -32,7 +33,7 @@ const Signin = forwardRef<LoginHandle>((props, ref) => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoading(true);
+        setEmailpwdLoading(true);
         setErrorMsg("");
         setSuccessMsg("");
 
@@ -46,7 +47,7 @@ const Signin = forwardRef<LoginHandle>((props, ref) => {
             password,
         });
 
-        setLoading(false);
+        setEmailpwdLoading(false);
 
         if (result?.error) {
             setErrorMsg(result.error);
@@ -244,7 +245,7 @@ const Signin = forwardRef<LoginHandle>((props, ref) => {
                                         {/* Submit */}
                                         <button
                                             type="submit"
-                                            disabled={loading}
+                                            disabled={emailpwdLoading}
                                             className="group relative flex w-full justify-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-soft hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
                                         >
                                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -253,20 +254,9 @@ const Signin = forwardRef<LoginHandle>((props, ref) => {
                                                     aria-hidden="true"
                                                 />
                                             </span>
-                                            {loading ? "Signing in..." : "Sign in"}
+                                            {emailpwdLoading ? "Signing in..." : "Sign in"}
                                         </button>
                                     </form>
-
-                                    {/* Close button */}
-                                    <div className="mt-6 text-center">
-                                        <button
-                                            type="button"
-                                            onClick={closeModal}
-                                            className="text-sm text-slate-500 hover:text-slate-700"
-                                        >
-                                            Close
-                                        </button>
-                                    </div>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

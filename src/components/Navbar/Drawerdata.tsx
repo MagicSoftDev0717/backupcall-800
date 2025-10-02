@@ -78,44 +78,22 @@ const Data = () => {
                 </button>
               </>
             ) : (
-              <Menu as="div" className="relative inline-block w-1/3">
-                <Menu.Button className="flex items-center gap-3 w-full px-4 py-2 hover:bg-slate-200">
+              <div className="flex flex-col items-start gap-3 p-4">
+                <div className="flex items-center gap-3">
                   <div className="h-8 w-8 rounded-full bg-bluegray text-white flex items-center justify-center font-bold">
                     {session.user?.email?.[0].toUpperCase() ?? "U"}
                   </div>
-                </Menu.Button>
+                  <span className="text-sm text-darkgray">{session.user?.email}</span>
+                </div>
 
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
+                <button
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="flex items-center gap-2 text-sm font-semibold text-navyblue px-2 py-2 rounded hover:bg-slate-100 w-full"
                 >
-                  <Menu.Items className="absolute left-0 mt-2 w-full origin-top bg-white shadow-lg ring-1 ring-black ring-opacity-5 rounded-md focus:outline-none">
-                    <div className="px-4 py-2 text-sm text-darkgray">
-                      {session.user?.email}
-                    </div>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          onClick={() => signOut({ callbackUrl: "/" })}
-                          className={`${active ? "bg-slate-100" : ""
-                            } flex w-full items-center px-4 py-2 text-sm text-navyblue`}
-                        >
-                          <ArrowRightOnRectangleIcon
-                            className="h-5 w-5 mr-2"
-                            aria-hidden="true"
-                          />
-                          Logout
-                        </button>
-                      )}
-                    </Menu.Item>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
+                  <ArrowRightOnRectangleIcon className="h-5 w-5" />
+                  Logout
+                </button>
+              </div>
             )}
           </div>
         </div>
