@@ -79,7 +79,7 @@ export default function SigninPage() {
         {/* Google Sign-in */}
         <button
           onClick={handleGoogleSignIn}
-          className="flex w-full items-center justify-center mt-6 gap-3 rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-slate-50"
+          className="flex w-full items-center justify-center mt-6 gap-3 rounded-md border border-slate-300 hover:border-blue-500 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-slate-50 "
         >
           <FcGoogle className="h-5 w-5" />
           Continue with Google

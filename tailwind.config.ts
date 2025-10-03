@@ -25,7 +25,6 @@ module.exports = {
       'bordertop': 'rgba(196, 196, 196, 0.5);',
       'blue-500': '#3b93f8ff',
       'blue-50': '#eff6ff',
-      
       'darkgray': '#90A3B4',
       'babyblue': '#E2F3F9',
       'gray-200': '#e5e7eb',
@@ -35,8 +34,10 @@ module.exports = {
       'green-600': '#00a63e',
       'bluegray': "#7D82A1",
       'bluegrey': "#7C8F9E",
+      'slate-50': "#f8fafc",
       'slate-100': "#dfe5ed",
       'slate-200': "#f0f1f5",
+      'slate-300': "#cad5e2",
       'slate-500': "#6a7282",
       'yellow-500': "#ffde21ff",
       'midnightblue': '#183B56',
