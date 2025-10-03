@@ -49,7 +49,7 @@ const Pricing = () => {
 
         {/* Special Package */}
         <div className="rounded-2xl border-2 border-blue bg-white p-8 shadow-lg flex flex-col justify-between relative">
-          <span className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+          <span className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue text-white text-sm font-semibold px-3 py-1 rounded-full shadow">
             Popular
           </span>
           <div className="flex items-end gap-2">

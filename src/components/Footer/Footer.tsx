@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { useRef } from "react";
-import Signupdialog from "../Navbar/Signupdlg";
 
 interface ProductType {
     id: number;
@@ -18,6 +16,7 @@ const products: ProductType[] = [
         link: [
             { name: "Home", href: "/dashboard" },
             { name: "Contacts", href: "/contacts" },
+            { name: "History", href: "/history" },
             { name: "Billing", href: "/billing" },
             { name: "Settings", href: "/settings" },
         ],
@@ -35,7 +34,6 @@ const products: ProductType[] = [
 ];
 const Footer = () => {
     const { data: session } = useSession();
-    const signupRef = useRef<{ openModal: () => void }>(null);
 
     const handleFooterClick = (
         e: React.MouseEvent,
@@ -44,13 +42,11 @@ const Footer = () => {
     ) => {
         if (isProtected && !session) {
             e.preventDefault(); // stop navigation
-            signupRef.current?.openModal();
+            window.location.href = "/signup";
         }
     };
     return (
         <div className="bg-darkblue -mt-16">
-            {/* ✅ Include hidden signup modal for footer */}
-            <Signupdialog ref={signupRef} />
             <div className="mx-auto max-w-2xl pt-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="my-2 flex justify-center grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-12 xl:gap-x-8 items-start">
 
@@ -77,7 +73,7 @@ const Footer = () => {
                                 <Image src={'/assets/footer/x.com.svg'} alt="x.com" width={20} height={20} />
                             </Link>
                             <Link href="https://instagram.com" className='footer-icons'>
-                                <Image src={'/assets/footer/instagram.svg'} alt="instagram" width={20} height={15} />
+                                <Image src={'/assets/footer/instagram.svg'} alt="instagram" width={20} height={20} />
                             </Link>
                         </div>
                     </div>

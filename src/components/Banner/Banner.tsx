@@ -99,7 +99,7 @@ const Banner = () => {
                             >
                                 Get started for free
                             </Link>
-                            <button className="border border-lightgrey text-blue font-medium px-8 py-4 rounded-full hover:bg-blue hover:text-white hover:shadow-lg hover:-translate-y-1 transform transition-all duration-300">
+                            <button className="border border-lightgrey text-blue font-semibold font-medium px-8 py-4 rounded-full hover:bg-blue hover:text-white hover:shadow-lg hover:-translate-y-1 transform transition-all duration-300">
                                 See How It Works
                             </button>
                         </div>
