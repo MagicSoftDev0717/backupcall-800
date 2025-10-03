@@ -243,26 +243,26 @@ export default function BillingPage() {
                                 </p>
                             </div>
                             <div className="h-12 w-12 flex items-center justify-center rounded-full bg-green-100 text-green-600 text-3xl">
-                                💳
-                                {/* <img
+                                {/* 💳 */}
+                                <img
                                     src="/assets/billing/card.png"
                                     alt="card"
-                                    className="w-8 h-5" // set manual size here
-                                /> */}
+                                    className="w-7 h-4" // set manual size here
+                                />
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section className="mt-8 rounded-2xl bg-white border border-grey-500 p-6 shadow">
+                <section className="mt-8 mb-12 rounded-2xl bg-white border border-grey-500 p-6 shadow">
                     <h2 className="text-xl font-semibold flex items-center gap-2 text-midnightblue mb-6">
                         <CreditCard className="h-5 w-5 text-blue" />
                         Purchase Minutes
                     </h2>
 
                     {/* Two cards side by side */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Package Deal */}
+                    {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
                         <div className="rounded-xl border border-slate-200 p-6 flex flex-col justify-between shadow hover:shadow-md transition">
                             <p className="text-beach font-semibold mb-4">
                                 Pro Offer: 120 mins for <span className="font-bold">$4.99</span>
@@ -277,10 +277,9 @@ export default function BillingPage() {
                             </button>
                         </div>
 
-                        {/* Custom Minutes */}
                         <div className="rounded-xl border border-slate-200 p-6 flex flex-col justify-between shadow hover:shadow-md transition">
                             <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                                {/* Left group */}
+                             
                                 <div className="flex items-center gap-2">
                                     <label className="text-beach font-semibold text-medium">Custom:</label>
                                     <input
@@ -296,7 +295,7 @@ export default function BillingPage() {
                                     <label className="text-beach font-semibold text-medium">mins</label>
                                 </div>
 
-                                {/* Right group */}
+                    
                                 <span className="text-beach font-semibold text-medium">
                                     Cost: ${(customMinutes > 0 ? (customMinutes * 0.05).toFixed(2) : "0.00")}
                                 </span>
@@ -311,10 +310,72 @@ export default function BillingPage() {
                                 {loadingCustom ? "Redirecting..." : "Buy Custom"}
                             </button>
                         </div>
+                    </div> */}
+
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                        {/* Package Deal Card */}
+                        <div className="relative rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center justify-between">
+                                    <h3 className="text-xl font-bold text-midnightblue">Pro Offer</h3>
+                                    <span className="px-3 py-1 text-xs font-semibold bg-blue-100 text-blue-600 rounded-full">Best Value</span>
+                                </div>
+                                <p className="mt-3 text-slate-600">One-time purchase, no subscription.</p>
+                                <div className="mt-6 flex items-end gap-2">
+                                    <span className="text-4xl font-bold text-blue">$4.99</span>
+                                    <span className="text-slate-500 text-lg">/ 120 mins</span>
+                                </div>
+                                <p className="mt-2 text-sm text-slate-500">Equivalent to just <strong>$0.04</strong> per minute</p>
+                            </div>
+
+                            <button
+                                onClick={handleBuyPackage}
+                                disabled={loadingPackage}
+                                className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-blue px-5 py-3 text-base font-semibold text-white hover:bg-brand-700 transition shadow"
+                            >
+                                <PlusCircle className="h-5 w-5" />
+                                {loadingPackage ? "Redirecting..." : "Buy 120 Minutes"}
+                            </button>
+                        </div>
+
+                        {/* Custom Minutes Card */}
+                        <div className="relative rounded-2xl border border-slate-200 bg-white shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 flex flex-col justify-between">
+                            <div>
+                                <h3 className="text-xl font-bold text-midnightblue">Custom Minutes</h3>
+                                <p className="mt-3 text-slate-600">Pay only for what you need, starting at $0.05/minute.</p>
+                                <div className="mt-6 flex flex-col md:flex-row md:items-center gap-4">
+                                    <div className="flex items-center gap-2">
+                                        <label className="text-slate-600 font-medium">Minutes:</label>
+                                        <input
+                                            type="number"
+                                            min={1}
+                                            value={customMinutes || ""}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setCustomMinutes(value ? parseInt(value, 10) : 0);
+                                            }}
+                                            className="w-24 rounded-md border border-grey-500 px-2 py-1 text-midnightblue text-sm"
+                                        />
+                                    </div>
+                                    <span className="text-lg font-semibold text-green-600">
+                                        Cost: ${(customMinutes > 0 ? (customMinutes * 0.05).toFixed(2) : "0.00")}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={handleBuyCustom}
+                                disabled={loadingCustom}
+                                className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-base font-semibold text-white hover:bg-green-700 transition shadow"
+                            >
+                                <PlusCircle className="h-5 w-5" />
+                                {loadingCustom ? "Redirecting..." : "Buy Custom"}
+                            </button>
+                        </div>
                     </div>
+
                 </section>
-
-
 
                 {/* CALL HISTORY */}
                 {/* <section className="mt-10 mb-10">
