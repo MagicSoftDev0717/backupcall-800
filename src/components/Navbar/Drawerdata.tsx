@@ -1,9 +1,6 @@
 import React, { Fragment } from "react";
-// import Link from "next/link";
+import Link from "next/link";
 
-import { useRef } from "react";
-import Register, { RegisterHandle } from "../Navbar/Signupdlg";
-import Login, { LoginHandle } from "../Navbar/Signindlg";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react"; // ✅ import session + signOut
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
@@ -29,8 +26,6 @@ function classNames(...classes: string[]) {
 }
 
 const Data = () => {
-  const signupRef = useRef<RegisterHandle>(null); // ✅ access signup modal
-  const loginRef = useRef<LoginHandle>(null);
 
   const { data: session } = useSession(); // ✅ get session data
 
@@ -40,7 +35,7 @@ const Data = () => {
   const handleNavClick = (href: string) => {
     if (!session) {
       // User is not logged in → open sign-up modal
-      signupRef.current?.openModal();
+      window.location.href = "/signup";
     } else {
       // Logged in → navigate normally
       router.push(href);
@@ -68,14 +63,14 @@ const Data = () => {
 
             {!session ? (
               <>
-                <button className="bg-white w-full text-blue border border-lightblue font-medium py-2 px-4 rounded"
-                  onClick={() => loginRef.current?.openModal()}>
+                <Link className="bg-white w-full text-blue border border-lightblue font-medium py-2 px-4 rounded"
+                  href="/signin">
                   Sign In
-                </button>
-                <button className="bg-lightblue w-full hover:bg-blue hover:text-white text-blue font-medium my-2 py-2 px-4 rounded"
-                  onClick={() => signupRef.current?.openModal()}>
+                </Link>
+                <Link className="bg-lightblue w-full hover:bg-blue hover:text-white text-blue font-medium my-2 py-2 px-4 rounded"
+                  href="/signup">
                   Sign up
-                </button>
+                </Link>
               </>
             ) : (
               <div className="flex flex-col items-start gap-3 p-4">
@@ -98,9 +93,6 @@ const Data = () => {
           </div>
         </div>
       </div>
-      {/* Mount the same Sign-up Modal once */}
-      <Register ref={signupRef} />
-      <Login ref={loginRef} />
     </div>
   );
 }

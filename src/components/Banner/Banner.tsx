@@ -1,8 +1,6 @@
 "use client";
 import Image from "next/image";
-
-import { useRef } from "react";
-import Register, { RegisterHandle } from "../Navbar/Signupdlg";
+import Link from "next/link";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
@@ -50,7 +48,6 @@ const scenarios = [
 ];
 
 const Banner = () => {
-    const registerRef = useRef<RegisterHandle>(null);
     const [selectedScenario, setSelectedScenario] = useState<null | number>(null);
     return (
         <main>
@@ -97,11 +94,11 @@ const Banner = () => {
 
                         {/* CTA BUTTONS */}
                         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <button className="bg-blue text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300"
-                                onClick={() => registerRef.current?.openModal()} // ✅ Trigger modal
+                            <Link className="bg-blue text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300"
+                               href="/signup" // ✅ Trigger modal
                             >
                                 Get started for free
-                            </button>
+                            </Link>
                             <button className="border border-lightgrey text-blue font-medium px-8 py-4 rounded-full hover:bg-blue hover:text-white hover:shadow-lg hover:-translate-y-1 transform transition-all duration-300">
                                 See How It Works
                             </button>
@@ -211,8 +208,6 @@ const Banner = () => {
                 </div>
 
             </div>
-            {/* Mount the same Sign-up Modal once */}
-            <Register ref={registerRef} />
         </main >
     )
 }
