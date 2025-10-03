@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Star, StarOff, RefreshCw, Search, PhoneCall } from "lucide-react";
+import Message from "@/components/Message";
 
 interface Contact {
   id: string;
@@ -16,7 +17,7 @@ export default function ContactsPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState<"all" | "favorites">("all");
-
+  const [msg, setMsg] = useState<{ type: "success" | "error" | "warning" | "info"; text: string } | null>(null);
   useEffect(() => {
     async function loadContacts() {
       const res = await fetch("/api/contacts/list");
@@ -47,7 +48,7 @@ export default function ContactsPage() {
       }
     } catch (err) {
       console.error(err);
-      alert("Could not update favorite status");
+      setMsg({ type: "error", text: "Could not update favorite status" });
     }
   };
 
@@ -56,22 +57,22 @@ export default function ContactsPage() {
     try {
       const res = await fetch("/api/contacts/sync", { method: "POST" });
       if (!res.ok) throw new Error("Failed to sync contacts");
-      alert("Contacts synced successfully!");
-
+     
       const contactsRes = await fetch("/api/contacts/list");
       if (contactsRes.ok) {
         const contactsData = await contactsRes.json();
         setContacts(contactsData.contacts || []);
       }
+      setMsg({ type: "success", text: "Contacts synced successfully!" });
     } catch (err) {
       console.error(err);
-      alert("Error syncing contacts.");
+      setMsg({ type: "error", text: "Error syncing contacts" });
     }
   };
 
   const handleCall = async (phone?: string) => {
     if (!phone) {
-      alert("No phone number available.");
+      setMsg({ type: "warning", text: "No phone number available" });
       return;
     }
 
@@ -83,14 +84,17 @@ export default function ContactsPage() {
       });
 
       if (res.ok) {
-        alert(`Calling ${phone}...`);
+       setMsg({ type: "info", text: `Calling ${phone}...` });
       } else {
         const err = await res.json();
-        alert("Failed to start call: " + (err.error || "Unknown error"));
+        setMsg({
+          type: "error",
+          text: "Failed to start call: " + (err.error || "Unknown error"),
+        });
       }
     } catch (error) {
       console.error(error);
-      alert("Error connecting the call.");
+      setMsg({ type: "error", text: "Error connecting the call" });
     }
   };
 
@@ -245,8 +249,8 @@ export default function ContactsPage() {
                       toggleFavorite(contact.id, contact.favorite ?? false)
                     }
                     className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition ${contact.favorite
-                        ? "bg-yellow-50 text-yellow-600 hover:bg-yellow-100"
-                        : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                      ? "bg-yellow-50 text-yellow-600 hover:bg-yellow-100"
+                      : "bg-slate-50 text-slate-600 hover:bg-slate-100"
                       }`}
                   >
                     {contact.favorite ? (
@@ -269,6 +273,9 @@ export default function ContactsPage() {
           </div>
         )}
       </main>
+      {msg && (
+        <Message type={msg.type} text={msg.text} onClose={() => setMsg(null)} />
+      )}
     </div>
   );
 }

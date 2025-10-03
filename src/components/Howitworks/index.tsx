@@ -31,7 +31,7 @@ const Howitworks = () => {
                             />
                             <Card
                                 icon={<Search className="h-6 w-6" />}
-                                title="Dial 855 support or 855-50Hotline"
+                                title="Dial 855-50Hotline"
                                 text="Say a name or use the keypad menu. We’ll find the right contact."
                             />
                             <Card

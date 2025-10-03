@@ -27,7 +27,7 @@ const scenarios = [
         alt: "Traveling person",
         caption: "Stay connected while traveling",
         description:
-            "No matter where you travel, dial the 855-support number and stay connected to your contacts worldwide.",
+            "No matter where you travel, dial the 855-50Hotline number and stay connected to your contacts worldwide.",
     },
     {
         id: 4,
@@ -41,9 +41,9 @@ const scenarios = [
         id: 5,
         src: "/assets/hero/5.png",
         alt: "Using someone else's phone",
-        caption: "No phone? Borrow one and call 1-855-Support",
+        caption: "No phone? Borrow one and call 1-855-50Hotline",
         description:
-            "If your phone is lost, stolen, or dead, simply borrow a friend’s or a public phone, dial 1-855-Support, and instantly retrieve your contacts to place calls securely.",
+            "If your phone is lost, stolen, or dead, simply borrow a friend’s or a public phone, dial 1-855-50Hotline, and instantly retrieve your contacts to place calls securely.",
     },
 ];
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Users, PhoneCall, RefreshCw, ShieldCheck, History } from "lucide-react";
+import Message from "@/components/Message";
 
 export default function Dashboard() {
     // Temporary mock data (replace with real data from backend)
@@ -14,6 +15,11 @@ export default function Dashboard() {
     const [showOtpInput, setShowOtpInput] = useState(false);
     const [otp, setOtp] = useState("");
     const [verifying, setVerifying] = useState(false);
+
+    const [msg, setMsg] = useState<{
+        type: "success" | "error" | "warning" | "info";
+        text: string;
+    } | null>(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -37,9 +43,9 @@ export default function Dashboard() {
             const res = await fetch("/api/contacts/sync", { method: "POST" });
             console.log(res);
             if (!res.ok) throw new Error("Sync failed");
-            alert("Contacts synced!");
+            setMsg({ type: "success", text: "Contacts synced!" });
         } catch (err) {
-            alert("Failed to sync contacts.");
+            setMsg({ type: "error", text: "Failed to sync contacts." });
         }
     };
 
@@ -53,9 +59,15 @@ export default function Dashboard() {
         const data = await res.json();
         if (res.ok) {
             setShowOtpInput(true);
-            alert(data.message || "Verification code sent to your phone!");
+            setMsg({
+                type: "info",
+                text: "Verification: " + (data.message || "Verification code sent to your phone!"),
+            });
         } else {
-            alert(data.error || "Failed to send verification code.");
+            setMsg({
+                type: "error",
+                text: "Failed to verification: " + (data.error || "Failed to send verification code."),
+            });
         }
     };
 
@@ -69,14 +81,25 @@ export default function Dashboard() {
             });
             const data = await res.json();
             if (res.ok) {
-                alert("Phone number verified!");
+                setMsg({
+                    type: "info",
+                    text: "Verification: " + (data.message || "Phone number verified!"),
+                });
                 setShowOtpInput(false);
                 setOtp("");
             } else {
-                alert(data.error || "Invalid code, please try again.");
+                setMsg({
+                    type: "error",
+                    text: "Failed to verification: " + (data.error || "Invalid code, please try again."),
+                });
             }
         } catch (err) {
-            alert("Verification failed. Try again.");
+
+            setMsg({
+                type: "warning",
+                text: "Verification failed. Try again."
+            });
+
         } finally {
             setVerifying(false);
         }
@@ -84,7 +107,10 @@ export default function Dashboard() {
 
     const handleCall = async (phone?: string) => {
         if (!phone) {
-            alert("No phone number available.");
+            setMsg({
+                type: "info",
+                text: "No phone number available."
+            });
             return;
         }
 
@@ -96,14 +122,20 @@ export default function Dashboard() {
             });
 
             if (res.ok) {
-                alert("Call started!");
+                setMsg({
+                    type: "info",
+                    text: "Call started!"
+                });
             } else {
                 const err = await res.json();
                 alert("Failed to start call: " + (err.error || "Unknown error"));
             }
         } catch (error) {
             console.error(error);
-            alert("Error connecting the call.");
+            setMsg({
+                type: "error",
+                text: "Error connecting the call."
+            });
         }
     };
 
@@ -234,7 +266,9 @@ export default function Dashboard() {
                     </Link>
                 </div>
             </main>
-
+            {msg && (
+                <Message type={msg.type} text={msg.text} onClose={() => setMsg(null)} />
+            )}
         </div>
     );
 }
