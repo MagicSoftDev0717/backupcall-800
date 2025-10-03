@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   // Always dial out from your Twilio purchased number
   const call = await client.calls.create({
     to,
-    from: process.env.TWILIO_TOLL_FREE!, // e.g. "18887877678"
+    from: process.env.TWILIO_TOLL_FREE!, // e.g. "18555046854"
     url: process.env.PUBLIC_URL + "/api/twilio/voice", // TwiML response (what to do once answered)
     statusCallback: process.env.PUBLIC_URL + "/api/twilio/status",
     statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],

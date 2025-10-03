@@ -5,22 +5,6 @@ interface whydata {
     subheading: string;
 }
 
-const whydata: whydata[] = [
-    {
-        heading: "Sync your contacts",
-        subheading: "Connect your Google account to import your contacts phone numbers.",
-    },
-    {
-        heading: "Dial  888-Support or 888-787-7678",
-        subheading: "Say a name or use the keypad menu. We’ll find the right contact.",
-    },
-    {
-        heading: "Connect instantly",
-        subheading: "We bridge the call and bill only for the minutes you use.",
-    }
-]
-
-
 const Howitworks = () => {
     return (
         <section id="howitworks" className="bg-lightblue">
@@ -39,18 +23,7 @@ const Howitworks = () => {
                         <h4 className="text-lg pt-4 font-normal sm:leading-tight text-center text-beach lg:text-start">Three steps to your next call. The rest runs automatically.</h4>
 
                         <div className="mt-8">
-                            {/* {whydata.map((items, i) => (
-                                <div className="flex mt-4" key={i}>
-                                    <div className="rounded-full h-10 w-12 flex items-center justify-center bg-circlebg">
-                                        <Image src="/assets/howitworks/check.svg" alt="check-image" width={24} height={24} />
-                                    </div>
-                                    <div className="ml-5">
-                                        <h4 className="text-2xl font-semibold">{items.heading}</h4>
-                                        <h5 className="text-lg text-beach font-normal mt-2">{items.subheading}</h5>
-                                    </div>
-                                </div>
-                            ))} */}
-
+                    
                             <Card
                                 icon={<CloudUpload className="h-6 w-6" />}
                                 title="Sync your contacts"
@@ -58,7 +31,7 @@ const Howitworks = () => {
                             />
                             <Card
                                 icon={<Search className="h-6 w-6" />}
-                                title="Dial 888 support or 888-888-888"
+                                title="Dial 855 support or 855-50Hotline"
                                 text="Say a name or use the keypad menu. We’ll find the right contact."
                             />
                             <Card

@@ -121,11 +121,12 @@ export default function ContactsPage() {
           </h1>
           <button
             onClick={handleSyncNow}
-            className="inline-flex items-center gap-2 rounded-lg bg-blue px-5 py-2 text-white font-medium shadow hover:bg-brand-700 transition"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue px-5 py-2 text-white font-medium shadow hover:bg-brand-700 transition"
           >
             <RefreshCw className="h-4 w-4" />
             {contacts.length === 0 ? "Sync Now" : "Re-sync"}
           </button>
+
         </div>
 
         {/* SEARCH BAR */}

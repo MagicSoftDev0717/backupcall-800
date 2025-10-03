@@ -24,7 +24,7 @@ const Question = () => {
                 <div className="mt-10 grid md:grid-cols-2 gap-6">
                     <FaqItem
                         q="Do I need to install an app to make calls?"
-                        a="No. You just dial the 888-support number from any phone and select a contact."
+                        a="No. You just dial the 855-support number from any phone and select a contact."
                     />
 
                     <FaqItem

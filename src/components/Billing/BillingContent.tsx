@@ -129,33 +129,39 @@ export default function BillingPage() {
         }
     };
 
-    const [callHistory, setCallHistory] = useState<CallRecord[]>([
-        {
-            id: "1",
-            date: "2025-09-22 10:15 AM",
-            contact: "John Smith",
-            duration: "3m 15s",
-            cost: 0.15,
-            recordingUrl: "/voicemails/call-1.mp3",
-        },
-        {
-            id: "2",
-            date: "2025-09-20 08:42 PM",
-            contact: "Jane Doe",
-            duration: "5m 10s",
-            cost: 0.25,
-        },
-        {
-            id: "3",
-            date: "2025-09-18 02:05 PM",
-            contact: "Mike Johnson",
-            duration: "2m 00s",
-            cost: 0.10,
-            recordingUrl: "/voicemails/call-3.mp3",
-        },
-    ]);
+    // const [callHistory, setCallHistory] = useState<CallRecord[]>([
+    //     {
+    //         id: "1",
+    //         date: "2025-09-22 10:15 AM",
+    //         contact: "John Smith",
+    //         duration: "3m 15s",
+    //         cost: 0.15,
+    //         recordingUrl: "/voicemails/call-1.mp3",
+    //     },
+    //     {
+    //         id: "2",
+    //         date: "2025-09-20 08:42 PM",
+    //         contact: "Jane Doe",
+    //         duration: "5m 10s",
+    //         cost: 0.25,
+    //     },
+    //     {
+    //         id: "3",
+    //         date: "2025-09-18 02:05 PM",
+    //         contact: "Mike Johnson",
+    //         duration: "2m 00s",
+    //         cost: 0.10,
+    //         recordingUrl: "/voicemails/call-3.mp3",
+    //     },
+    // ]);
 
-    const totalThisMonth = callHistory.reduce((acc, c) => acc + c.cost, 0);
+    // const totalThisMonth = callHistory.reduce((acc, c) => acc + c.cost, 0);
+
+
+
+
+
+
 
     // const handleAddOrUpdateCard = () => {
     //   alert("Redirecting to secure payment method update flow...");
@@ -167,7 +173,7 @@ export default function BillingPage() {
             <main className="mx-auto max-w-6xl px-4">
                 {/* PAGE TITLE */}
                 <h1 className="text-3xl font-semibold text-midnightblue">
-                    Billing & Call History
+                    Billing
                 </h1>
 
                 {/* PAYMENT METHOD CARD */}
@@ -236,8 +242,13 @@ export default function BillingPage() {
                                     ${balance.toFixed(2)}
                                 </p>
                             </div>
-                            <div className="h-12 w-12 flex items-center justify-center rounded-full bg-green-100 text-green-600">
+                            <div className="h-12 w-12 flex items-center justify-center rounded-full bg-green-100 text-green-600 text-3xl">
                                 💳
+                                {/* <img
+                                    src="/assets/billing/card.png"
+                                    alt="card"
+                                    className="w-8 h-5" // set manual size here
+                                /> */}
                             </div>
                         </div>
                     </div>
@@ -268,22 +279,29 @@ export default function BillingPage() {
 
                         {/* Custom Minutes */}
                         <div className="rounded-xl border border-slate-200 p-6 flex flex-col justify-between shadow hover:shadow-md transition">
-                            <div className="flex items-center gap-3 mb-4">
-                                <label className="text-beach font-semibold text-medium">Custom Minutes:</label>
-                                <input
-                                    type="number"
-                                    min={1}
-                                    value={customMinutes || ""}
-                                    onChange={(e) => {
-                                        const value = e.target.value;
-                                        setCustomMinutes(value ? parseInt(value, 10) : 0);
-                                    }}
-                                    className="w-24 rounded-md border border-grey500 px-2 py-1 text-midnightblue text-sm"
-                                />
+                            <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                                {/* Left group */}
+                                <div className="flex items-center gap-2">
+                                    <label className="text-beach font-semibold text-medium">Custom:</label>
+                                    <input
+                                        type="number"
+                                        min={1}
+                                        value={customMinutes || ""}
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            setCustomMinutes(value ? parseInt(value, 10) : 0);
+                                        }}
+                                        className="w-20 rounded-md border border-grey-500 px-2 py-1 text-midnightblue text-sm"
+                                    />
+                                    <label className="text-beach font-semibold text-medium">mins</label>
+                                </div>
+
+                                {/* Right group */}
                                 <span className="text-beach font-semibold text-medium">
                                     Cost: ${(customMinutes > 0 ? (customMinutes * 0.05).toFixed(2) : "0.00")}
                                 </span>
                             </div>
+
                             <button
                                 onClick={handleBuyCustom}
                                 disabled={loadingCustom}
@@ -299,7 +317,7 @@ export default function BillingPage() {
 
 
                 {/* CALL HISTORY */}
-                <section className="mt-10 mb-10">
+                {/* <section className="mt-10 mb-10">
                     <h2 className="text-xl font-semibold text-midnightblue">
                         Call History
                     </h2>
@@ -376,7 +394,7 @@ export default function BillingPage() {
                             No call history available yet.
                         </p>
                     )}
-                </section>
+                </section> */}
             </main>
         </div>
     );

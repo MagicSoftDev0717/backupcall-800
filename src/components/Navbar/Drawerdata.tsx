@@ -5,7 +5,6 @@ import { useRef } from "react";
 import Register, { RegisterHandle } from "../Navbar/Signupdlg";
 import Login, { LoginHandle } from "../Navbar/Signindlg";
 import { useRouter } from "next/navigation";
-import { Menu, Transition } from "@headlessui/react";
 import { useSession, signOut } from "next-auth/react"; // ✅ import session + signOut
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 
@@ -19,6 +18,7 @@ interface NavigationItem {
 const navigation: NavigationItem[] = [
   { name: 'Home', href: '/dashboard', current: true },
   { name: 'Contacts', href: '/contacts', current: false },
+  { name: 'History', href: '/history', current: false },
   { name: 'Billing', href: '/billing', current: false },
   { name: 'Settings', href: '/settings', current: false },
   // { name: 'More', href: '', current: false },

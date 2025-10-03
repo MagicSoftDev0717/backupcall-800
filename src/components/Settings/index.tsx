@@ -126,7 +126,7 @@ export default function SettingsPage() {
             <Key className="h-5 w-5 text-blue" /> IVR PIN
           </h2>
           <p className="mt-1 text-sm text-bluegray">
-            Set a 4-digit PIN for faster authentication when you call the 888-support number.
+            Set a 4-digit PIN for faster authentication when you call the 855-support number.
           </p>
           <div className="mt-3 flex gap-3">
             <input
