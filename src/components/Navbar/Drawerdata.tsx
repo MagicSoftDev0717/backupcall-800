@@ -63,7 +63,7 @@ const Data = () => {
 
             {!session ? (
               <>
-                <Link className="bg-white w-full text-blue border border-lightblue font-medium py-2 px-4 rounded"
+                <Link className="bg-white w-full text-blue border border-lightblue font-medium py-2 px-4 rounded mr-2"
                   href="/signin">
                   Sign In
                 </Link>
