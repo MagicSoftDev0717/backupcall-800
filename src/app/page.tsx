@@ -24,7 +24,7 @@ export default function Home() {
       {/* <Provide /> */}
       <Pricing />
       <Question />
-      <CTA />
+      {/* <CTA /> */}
      
       <Contact />
       {/* <Network /> */}

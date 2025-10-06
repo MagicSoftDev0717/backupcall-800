@@ -115,9 +115,9 @@ const Footer = () => {
                         </div>
                     </div> */}
 
-                    <div className='col-span-4 md:col-span-4 lg:col-span-3'>
+                    {/* <div className='col-span-4 md:col-span-4 lg:col-span-3'>
                         <div className="flex gap-2">
-                            <h5 className="text-base font-normal text-offwhite">Apps</h5>
+                            <h5 className="text-white font-normal text-offwhite">Apps download</h5>
                         </div>
                         <div className="flex gap-2 mt-6 mb-4">
                             <Image src={'/assets/footer/app-store.svg'} alt="appstore-icon" width={156} height={78} />
@@ -125,8 +125,43 @@ const Footer = () => {
                         <div className="flex gap-2 mt-8 mb-4">
                             <Image src={'/assets/footer/google-play.svg'} alt="googleplay-icon" width={156} height={78} />
                         </div>
-                    </div>
+                    </div> */}
 
+                    <div className="col-span-4 md:col-span-4 lg:col-span-3">
+                        <div className="flex gap-2">
+                            <h5 className="text-white font-normal text-offwhite">App Downloads</h5>
+                        </div>
+
+                        <div className="mt-6 flex flex-col gap-8">
+                            {/* Android Download */}
+                            <a
+                                href="/downloads/dialbackup-latest.apk"
+                                download
+                                className="w-3/4 inline-flex items-center justify-center gap-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-gray-100 px-4 py-3 text-sm font-semibold transition shadow-md"
+                            >
+                                <img
+                                    src="/assets/footer/android-icon.svg"
+                                    alt="Android icon"
+                                    className="w-5 h-5"
+                                />
+                                For Android (.apk)
+                            </a>
+
+                            {/* iOS Download */}
+                            <a
+                                href="/downloads/backupcall-ios.ipa"
+                                download
+                                className="w-3/4 inline-flex items-center justify-center gap-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-gray-100 px-4 py-3 text-sm font-semibold transition shadow-md"
+                            >
+                                <img
+                                    src="/assets/footer/apple-icon.svg"
+                                    alt="iOS icon"
+                                    className="w-5 h-5"
+                                />
+                                For Apple (.ipa)
+                            </a>
+                        </div>
+                    </div>
 
                 </div>
 
