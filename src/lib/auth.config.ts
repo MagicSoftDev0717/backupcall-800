@@ -26,7 +26,7 @@ export const authConfig: AuthOptions = {
             authorization: {
                 params: {
                     scope:
-                        "openid email profile https://www.googleapis.com/auth/contacts.readonly",
+                        "openid email profile",
                     access_type: "offline",
                     prompt: "consent",
                     include_granted_scopes: "false"  // explicitly set to false
