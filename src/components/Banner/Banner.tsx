@@ -93,13 +93,21 @@ const Banner = () => {
                         </p> */}
 
                         <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
-                            <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
-                                DialBackup lets a signed-in user call existing Google Contacts through a toll-free number.
-                                After consent, DialBackup reads contact names and phone numbers (read-only) via Google People API
-                                to display a call-picker and place the call. No contacts are written back to Google.
-                                Data can be disconnected and deleted at any time from Settings.
-                            </p>
+                            DialBackup lets a signed-in user call existing Google Contacts through a toll-free number.
+                            After consent, DialBackup reads contact names and phone numbers (read-only) via Google People API
+                            to display a call-picker and place the call. No contacts are written back to Google.
+                            Data can be disconnected and deleted at any time from Settings.
                         </p>
+
+                        <section className="mt-8">
+                            <h2 className="text-xl font-medium">How Google data is used</h2>
+                            <ul className="list-disc pl-6 mt-3 space-y-1">
+                                <li>Scope: <code>https://www.googleapis.com/auth/contacts.readonly</code></li>
+                                <li>Purpose: read names and phone numbers to show a call-picker and initiate calls via our toll-free number.</li>
+                                <li>Storage: minimal fields only; encrypted at rest when saved.</li>
+                                <li>Controls: Disconnect Google access and delete synced contacts from Settings.</li>
+                            </ul>
+                        </section>
 
                         {/* CTA BUTTONS */}
                         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
