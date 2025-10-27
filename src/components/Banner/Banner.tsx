@@ -85,17 +85,26 @@ const Banner = () => {
                     <div className="mx-auto max-w-7xl pt-20 pb-3 banner-image text-center">
                         {/* HEADLINE */}
                         <h1 className="text-3xl font-bold text-navyblue sm:text-5xl lg:text-4xl leading-tight">
-                            Access your contacts from anywhere <br />and call at any time.
+                            Access your google contacts from anywhere <br />and call at any time.
                         </h1>
-                        <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
+                        {/* <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
                             Securely back up your contacts and make calls when you need them -
                             even from someone else’s phone. No app required to dial out.
+                        </p> */}
+
+                        <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
+                            <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
+                                DialBackup lets a signed-in user call existing Google Contacts through a toll-free number.
+                                After consent, DialBackup reads contact names and phone numbers (read-only) via Google People API
+                                to display a call-picker and place the call. No contacts are written back to Google.
+                                Data can be disconnected and deleted at any time from Settings.
+                            </p>
                         </p>
 
                         {/* CTA BUTTONS */}
                         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link className="bg-blue text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300"
-                               href="/signup" // ✅ Trigger modal
+                                href="/signup" // ✅ Trigger modal
                             >
                                 Get started for free
                             </Link>
