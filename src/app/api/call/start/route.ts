@@ -19,8 +19,8 @@ export async function POST(req: Request) {
   const call = await client.calls.create({
     to,
     from: process.env.TWILIO_TOLL_FREE!, // e.g. "18555046854"
-    url: process.env.PUBLIC_URL + "/api/twilio/voice", // TwiML response (what to do once answered)
-    statusCallback: process.env.PUBLIC_URL + "/api/twilio/status",
+    url: process.env.NEXTAUTH_URL + "/api/twilio/voice", // TwiML response (what to do once answered)
+    statusCallback: process.env.NEXTAUTH_URL + "/api/twilio/status",
     statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
   });
 
