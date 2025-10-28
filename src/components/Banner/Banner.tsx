@@ -91,7 +91,7 @@ const Banner = () => {
                             Securely back up your contacts and make calls when you need them -
                             even from someone else’s phone. No app required to dial out.
                         </p> */}
-                        
+
                         <h1 className="text-3xl font-bold text-navyblue sm:text-5xl lg:text-4xl leading-tight">
                             Call your Google Contacts from one toll-free number
                         </h1>
@@ -107,9 +107,9 @@ const Banner = () => {
                         <div className="mt-4 text-sm text-bluegray max-w-2xl mx-auto">
                             <a href="/privacy" className="underline underline-offset-4">Privacy Policy</a>
                             <span className="mx-2">•</span>
-                            <a href="/deletion" className="underline underline-offset-4">Data Deletion</a>
+                            <a href="/setting" className="underline underline-offset-4">Data Setting</a>
                             <span className="mx-2">•</span>
-                            <a href="/how-it-works" className="underline underline-offset-4">How it works</a>
+                            <a href="#howitworks" className="underline underline-offset-4">How it works</a>
                         </div>
                         ```
 
@@ -121,9 +121,10 @@ const Banner = () => {
                             >
                                 Get started for free
                             </Link>
-                            <button className="border border-lightgrey text-blue font-semibold font-medium px-8 py-4 rounded-full hover:bg-blue hover:text-white hover:shadow-lg hover:-translate-y-1 transform transition-all duration-300">
+                            <Link className="border border-lightgrey text-blue font-semibold font-medium px-8 py-4 rounded-full hover:bg-blue hover:text-white hover:shadow-lg hover:-translate-y-1 transform transition-all duration-300"
+                                  href="#howitworks">
                                 See How It Works
-                            </button>
+                            </Link>
                         </div>
 
                         {/* HERO IMAGE GRID */}
