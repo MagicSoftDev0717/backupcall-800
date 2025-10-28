@@ -19,11 +19,11 @@ export default function Home() {
       <Banner />
       {/* <Companies /> */}
       <Howitworks />
-      <Proof />
+      {/* <Proof /> */}
       {/* <Buyers /> */}
       {/* <Provide /> */}
       <Pricing />
-      <Question />
+      {/* <Question /> */}
       {/* <CTA /> */}
      
       <Contact />
