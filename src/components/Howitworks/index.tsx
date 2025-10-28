@@ -59,7 +59,7 @@ const Howitworks = () => {
                             <span className="mx-2">•</span>
                             <a href="/terms" className="underline">Terms</a>
                             <span className="mx-2">•</span>
-                            <a href="mailto:support@dialbackup.com" className="underline">support@dialbackup.com</a>
+                            <a href="mailto:info@dialbackup.com" className="underline">info@dialbackup.com</a>
                         </div>
 
                     </div>
