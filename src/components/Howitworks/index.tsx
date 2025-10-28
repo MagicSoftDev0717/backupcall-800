@@ -27,23 +27,23 @@ const Howitworks = () => {
                             <Card
                                 icon={<CloudUpload className="h-6 w-6" />}
                                 title="Sync your google contacts"
-                                text="Connect your Google account to import your contacts phone numbers."
+                                text="Sign in with Google and grant read-only access (names & phone numbers). We never change your Google data."
                             />
                             <Card
                                 icon={<Search className="h-6 w-6" />}
                                 title="Dial 855-50Hotline"
-                                text="Say a name or use the keypad menu. We’ll find the right contact."
+                                text="Say a name or use the keypad—we’ll match the right person from your Google Contacts."
                             />
                             <Card
                                 icon={<PhoneCall className="h-6 w-6" />}
                                 title="Connect instantly"
-                                text="We bridge the call and bill only for the minutes you use."
+                                text="We bridge the call through our toll-free line and bill only for connected minutes. Not for emergency calls."
                             />
 
                             <Card
                                 icon={<ShieldCheck className="h-6 w-6" />}
-                                title="Disconnect"
-                                text="Revoke Google access synced contacts anytime in Settings."
+                                title="Disconnect & delete"
+                                text="Revoke Google access and delete synced contacts anytime in Settings."
                             />
                         </div>
 
@@ -52,7 +52,7 @@ const Howitworks = () => {
                             After you sign in with Google, DialBackup requests <code>contacts.readonly</code> to read
                             your contacts’ names and phone numbers so you can place calls from our toll-free number.
                             Access is read-only — we never edit your Google data. You can disconnect Google and delete
-                            synced contacts anytime at <a href="/deletion" className="underline">/deletion</a>.
+                            synced contacts anytime at <a href="/settings" className="underline">/settings</a>.
                         </p>
                         <div className="mt-3 text-sm">
                             <a href="/privacy" className="underline">Privacy Policy</a>
