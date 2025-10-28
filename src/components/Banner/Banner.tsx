@@ -107,7 +107,7 @@ const Banner = () => {
                         <div className="mt-4 text-sm text-bluegray max-w-2xl mx-auto">
                             <a href="/privacy" className="underline underline-offset-4">Privacy Policy</a>
                             <span className="mx-2">•</span>
-                            <a href="/setting" className="underline underline-offset-4">Data Setting</a>
+                            <a href="/settings" className="underline underline-offset-4">Data Setting</a>
                             <span className="mx-2">•</span>
                             <a href="#howitworks" className="underline underline-offset-4">How it works</a>
                         </div>

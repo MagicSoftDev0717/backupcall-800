@@ -89,7 +89,7 @@ export default function TermsPage() {
               stored encrypted at rest if you choose to save them; otherwise they are held in session only.
               You can delete synced contacts and your account, and revoke Google access at any time. Learn more at{" "}
               <a href="/privacy" className="text-blue hover:underline">/privacy</a> and{" "}
-              <a href="/setting" className="text-blue hover:underline">/setting</a>.
+              <a href="/settings" className="text-blue hover:underline">/setting</a>.
             </p>
           </div>
 
