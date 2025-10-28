@@ -31,7 +31,7 @@ const Howitworks = () => {
                             />
                             <Card
                                 icon={<Search className="h-6 w-6" />}
-                                title="Dial 855-50Hotline"
+                                title="Dial ial our toll-free number"
                                 text="Say a name or use the keypad—we’ll match the right person from your Google Contacts."
                             />
                             <Card
