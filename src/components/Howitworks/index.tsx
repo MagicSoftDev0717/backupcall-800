@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PhoneCall, CloudUpload, Search } from "lucide-react";
+import { PhoneCall, CloudUpload, Search, ShieldCheck } from "lucide-react";
 interface whydata {
     heading: string;
     subheading: string;
@@ -23,10 +23,10 @@ const Howitworks = () => {
                         <h4 className="text-lg pt-4 font-normal sm:leading-tight text-center text-beach lg:text-start">Three steps to your next call. The rest runs automatically.</h4>
 
                         <div className="mt-8">
-                    
+
                             <Card
                                 icon={<CloudUpload className="h-6 w-6" />}
-                                title="Sync your contacts"
+                                title="Sync your google contacts"
                                 text="Connect your Google account to import your contacts phone numbers."
                             />
                             <Card
@@ -38,6 +38,12 @@ const Howitworks = () => {
                                 icon={<PhoneCall className="h-6 w-6" />}
                                 title="Connect instantly"
                                 text="We bridge the call and bill only for the minutes you use."
+                            />
+
+                            <Card
+                                icon={<ShieldCheck className="h-6 w-6" />}
+                                title="Disconnect"
+                                text="Revoke Google access synced contacts anytime in Settings."
                             />
                         </div>
 

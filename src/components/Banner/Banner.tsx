@@ -84,18 +84,40 @@ const Banner = () => {
 
                     <div className="mx-auto max-w-7xl pt-20 pb-3 banner-image text-center">
                         {/* HEADLINE */}
-                        <h1 className="text-3xl font-bold text-navyblue sm:text-5xl lg:text-4xl leading-tight">
+                        {/* <h1 className="text-3xl font-bold text-navyblue sm:text-5xl lg:text-4xl leading-tight">
                             Access your contacts from anywhere <br />and call at any time.
                         </h1>
                         <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
                             Securely back up your contacts and make calls when you need them -
                             even from someone else’s phone. No app required to dial out.
+                        </p> */}
+                        
+                        <h1 className="text-3xl font-bold text-navyblue sm:text-5xl lg:text-4xl leading-tight">
+                            Call your Google Contacts from one toll-free number
+                        </h1>
+
+                        <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
+                            After you sign in with Google, DialBackup reads your contacts in read-only mode
+                            (names and phone numbers) and shows them in a call-picker. When you tap Call, we
+                            place the call via our Twilio toll-free number. We never change your Google data.
+                            You can disconnect Google and delete synced contacts anytime. No app is required
+                            to dial out.
                         </p>
+
+                        <div className="mt-4 text-sm text-bluegray max-w-2xl mx-auto">
+                            <a href="/privacy" className="underline underline-offset-4">Privacy Policy</a>
+                            <span className="mx-2">•</span>
+                            <a href="/deletion" className="underline underline-offset-4">Data Deletion</a>
+                            <span className="mx-2">•</span>
+                            <a href="/how-it-works" className="underline underline-offset-4">How it works</a>
+                        </div>
+                        ```
+
 
                         {/* CTA BUTTONS */}
                         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link className="bg-blue text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300"
-                               href="/signup" // ✅ Trigger modal
+                                href="/signup" // ✅ Trigger modal
                             >
                                 Get started for free
                             </Link>
