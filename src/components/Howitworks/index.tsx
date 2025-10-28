@@ -19,7 +19,7 @@ const Howitworks = () => {
 
                     {/* COLUMN-2 */}
                     <div>
-                        <h3 className="text-4xl text-navyblue lg:text-4xl pt-4 font-semibold sm:leading-tight mt-5 text-center lg:text-start">How it works</h3>
+                        <h3 className="text-4xl text-navyblue lg:text-4xl pt-4 font-semibold sm:leading-tight mt-5 text-center lg:text-start">How DialBackup works</h3>
                         <h4 className="text-lg pt-4 font-normal sm:leading-tight text-center text-beach lg:text-start">Three steps to your next call. The rest runs automatically.</h4>
 
                         <div className="mt-8">
@@ -45,6 +45,21 @@ const Howitworks = () => {
                                 title="Disconnect"
                                 text="Revoke Google access synced contacts anytime in Settings."
                             />
+                        </div>
+
+                        <h3 className="text-xl font-semibold text-midnightblue">Data we access & why</h3>
+                        <p className="mt-2">
+                            After you sign in with Google, DialBackup requests <code>contacts.readonly</code> to read
+                            your contacts’ names and phone numbers so you can place calls from our toll-free number.
+                            Access is read-only — we never edit your Google data. You can disconnect Google and delete
+                            synced contacts anytime at <a href="/deletion" className="underline">/deletion</a>.
+                        </p>
+                        <div className="mt-3 text-sm">
+                            <a href="/privacy" className="underline">Privacy Policy</a>
+                            <span className="mx-2">•</span>
+                            <a href="/terms" className="underline">Terms</a>
+                            <span className="mx-2">•</span>
+                            <a href="mailto:support@dialbackup.com" className="underline">support@dialbackup.com</a>
                         </div>
 
                     </div>
