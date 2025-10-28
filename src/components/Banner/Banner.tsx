@@ -111,8 +111,6 @@ const Banner = () => {
                             <span className="mx-2">•</span>
                             <a href="#howitworks" className="underline underline-offset-4">How it works</a>
                         </div>
-                        ```
-
 
                         {/* CTA BUTTONS */}
                         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
