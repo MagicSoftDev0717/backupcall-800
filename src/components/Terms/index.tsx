@@ -88,8 +88,8 @@ export default function TermsPage() {
               We collect and use only what is necessary to provide the service. Minimal contact fields may be
               stored encrypted at rest if you choose to save them; otherwise they are held in session only.
               You can delete synced contacts and your account, and revoke Google access at any time. Learn more at{" "}
-              <a href="/privacy" className="text-blue hover:underline">/privacy</a> and{" "}
-              <a href="/settings" className="text-blue hover:underline">/setting</a>.
+              <a href="/privacy" className="text-blue hover:underline">Privacy Policy</a> and{" "}
+              <a href="/settings" className="text-blue hover:underline">Settings</a>.
             </p>
           </div>
 

@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
             <p className="mt-2 text-bluegray">
               You can disconnect Google at any time in Settings, which stops new data access.
               You can delete synced contacts and your account data via the{" "}
-              <a href="/setting" className="text-blue hover:underline">Setting</a> page or by contacting support.
+              <a href="/setting" className="text-blue hover:underline">Settings</a> page or by contacting support.
               You may also revoke DialBackup’s access in your Google Account security settings.
             </p>
           </div>
