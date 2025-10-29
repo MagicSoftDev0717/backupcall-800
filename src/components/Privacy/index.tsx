@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
               scope to read <em>names</em>, <em>phone numbers</em>, and optionally <em>primary emails</em> so you can place calls from the web app.
               We do not write to or delete your Google data.<br />
               c) Calling & usage data: the contact you chose to call, call timestamps and duration, and basic diagnostics (IP address, device/browser).<br />
-              d) Billing data: handled by Stripe (we do not store full payment details on our servers).
+              d) Billing data: handled by PayPal (we do not store full payment details on our servers).
             </p>
           </div>
 
