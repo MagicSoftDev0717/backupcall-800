@@ -124,8 +124,8 @@ export default function TermsPage() {
 
         <p className="mt-8 text-bluegray">
           For questions about these Terms, contact{" "}
-          <a href="mailto:info@dialbackup.com" className="text-blue hover:underline">
-            info@dialbackup.com
+          <a href="mailto:darrensdesign01@gmail.com" className="text-blue hover:underline">
+            darrensdesign01@gmail.com
           </a>{" "}
           or visit our{" "}
           <a href="/#contactus" className="text-blue hover:underline">Contact page</a>.
