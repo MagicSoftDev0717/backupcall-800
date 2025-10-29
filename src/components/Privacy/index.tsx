@@ -108,10 +108,7 @@ export default function PrivacyPolicyPage() {
               9. Contact Us
             </h2>
             <p className="mt-2 text-bluegray">
-              For questions about this policy or your data, contact{" "}
-              <a href="mailto:darrensdesign01@gmail.com" className="text-blue hover:underline">
-                darrensdesign01@gmail.com
-              </a>. You can also reach us via the{" "}
+              For questions about this policy or your data, You can reach us via the{" "}
               <a href="/#contactus" className="text-blue hover:underline">Contact page</a>.
             </p>
           </div>

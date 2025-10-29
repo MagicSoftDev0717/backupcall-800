@@ -123,11 +123,7 @@ export default function TermsPage() {
         </section>
 
         <p className="mt-8 text-bluegray">
-          For questions about these Terms, contact{" "}
-          <a href="mailto:darrensdesign01@gmail.com" className="text-blue hover:underline">
-            darrensdesign01@gmail.com
-          </a>{" "}
-          or visit our{" "}
+          For questions about these Terms, visit our{" "}
           <a href="/#contactus" className="text-blue hover:underline">Contact page</a>.
         </p>
       </main>
