@@ -7,7 +7,7 @@ export default function TermsPage() {
         <h1 className="text-3xl font-semibold text-midnightblue">
           Terms of Service
         </h1>
-        <p className="mt-2 text-sm text-bluegray">Last updated: Oct 29, 2025</p>
+        <p className="mt-2 text-sm text-bluegray">Last updated: Oct 28, 2025</p>
 
         <p className="mt-4 text-bluegray leading-relaxed">
           By using DialBackup, you agree to these Terms. If you do not agree, do not use the service.
@@ -75,7 +75,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-xl font-semibold text-midnightblue">7. Third-Party Services</h2>
             <p className="mt-2 text-bluegray">
-              We use third-party processors to operate the service, including Twilio (telephony) and Stripe
+              We use third-party processors to operate the service, including Twilio (telephony) and PayPal
               (payments). These providers act on our behalf under contractual obligations and may process
               limited data as needed to provide their services. See our{" "}
               <a href="/privacy" className="text-blue hover:underline">Privacy Policy</a> for details.

@@ -7,7 +7,7 @@ export default function PrivacyPolicyPage() {
         <h1 className="text-3xl font-semibold text-midnightblue">
           Privacy Policy
         </h1>
-        <p className="mt-2 text-sm text-bluegray">Last updated: Oct 29, 2025</p>
+        <p className="mt-2 text-sm text-bluegray">Last updated: Oct 28, 2025</p>
 
         <p className="mt-4 text-bluegray leading-relaxed">
           Your privacy is very important to us. This Privacy Policy explains what we
@@ -56,7 +56,7 @@ export default function PrivacyPolicyPage() {
               4. Sharing with Service Providers
             </h2>
             <p className="mt-2 text-bluegray">
-              We share limited data with: (i) Twilio, to complete phone calls; (ii) Stripe, to process payments;
+              We share limited data with: (i) Twilio, to complete phone calls; (ii) PayPal, to process payments;
               and (iii) our hosting and analytics providers to operate and secure the service.
               These providers act as processors on our behalf and may only use data as instructed by us.
             </p>
@@ -80,7 +80,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="mt-2 text-bluegray">
               We use industry-standard encryption in transit and at rest. Access to production data is restricted and audited.
-              Payment information is processed by Stripe and not stored on our servers.
+              Payment information is processed by PayPal and not stored on our servers.
             </p>
           </div>
 
@@ -99,7 +99,7 @@ export default function PrivacyPolicyPage() {
               8. Children’s Privacy
             </h2>
             <p className="mt-2 text-bluegray">
-              DialBackup is not directed to children under 13, and we do not knowingly collect personal information from them.
+              DialBackup is not directed to children under 18, and we do not knowingly collect personal information from them.
             </p>
           </div>
 
