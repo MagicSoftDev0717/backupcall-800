@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PhoneCall, CloudUpload, Search, ShieldCheck } from "lucide-react";
 interface whydata {
     heading: string;
@@ -47,24 +48,32 @@ const Howitworks = () => {
                             />
                         </div>
 
-                        <h3 className="text-xl font-semibold text-midnightblue">Data we access & why</h3>
-                        <p className="mt-2">
-                            After you sign in with Google, DialBackup requests <code>contacts.readonly</code> to read
-                            your contacts’ names and phone numbers so you can place calls from our toll-free number.
-                            Access is read-only — we never edit your Google data. You can disconnect Google and delete
-                            synced contacts anytime at <a href="/settings" className="underline">/settings</a>.
-                        </p>
-                        <div className="mt-3 text-sm">
-                            <a href="/privacy" className="underline">Privacy Policy</a>
-                            <span className="mx-2">•</span>
-                            <a href="/terms" className="underline">Terms</a>
-                            <span className="mx-2">•</span>
-                            <a href="mailto:info@dialbackup.com" className="underline">info@dialbackup.com</a>
-                        </div>
-
                     </div>
 
                 </div>
+            </div>
+
+            <div className="mx-auto max-w-7xl pt-20 pb-3 text-center">
+
+                <h1 className="text-3xl font-bold text-navyblue sm:text-5xl lg:text-4xl leading-tight">
+                    Data we access & why
+                </h1>
+
+                <p className="mt-6 text-lg text-bluegray max-w-2xl mx-auto">
+                    After you sign in with Google, DialBackup requests <code>contacts.readonly</code> to read
+                    your contacts’ names and phone numbers so you can place calls from our toll-free number.
+                    Access is read-only — we never edit your Google data. You can disconnect Google and delete
+                    synced contacts anytime at <a href="/settings" className="underline">Settings</a>.
+                </p>
+
+                <div className="mt-4 text-sm text-bluegray max-w-2xl mx-auto">
+                    <a href="/privacy" className="underline underline-offset-4">Privacy Policy</a>
+                    <span className="mx-2">•</span>
+                    <a href="/terms" className="underline underline-offset-4">Terms of Service</a>
+                    <span className="mx-2">•</span>
+                    <a href="#howitworks" className="underline underline-offset-4">How it works</a>
+                </div>
+
             </div>
 
         </section>
