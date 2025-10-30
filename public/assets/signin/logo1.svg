@@ -27,27 +27,4 @@
         >
           855
         </text>
-
-<!-- DB letters, centered on the logo -->
-  <text
-    x="9"
-    y="29"
-    dominant-baseline="middle"
-    text-anchor="middle"
-    font-size="15"
-    font-weight="600"
-    fill="#dc2626"
-    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto"
-  >D</text>
-  <text
-    x="40"
-    y="28"
-    dominant-baseline="middle"
-    text-anchor="middle"
-    font-size="16"
-    font-weight="600"
-    fill="#ffffff"
-    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto"
-  >B</text>
-
       </svg>

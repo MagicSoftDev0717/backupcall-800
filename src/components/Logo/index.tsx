@@ -40,6 +40,27 @@ export default function Logo({ className = "h-12", wordmark = true }: Props) {
           >
             855
           </text>
+          <text
+            x="9"
+            y="28"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            font-size="15"
+            font-weight="600"
+            fill="#dc2626"
+            font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto"
+          >D</text>
+          <text
+            x="40"
+            y="28"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            font-size="16"
+            font-weight="600"
+            fill="#111827"
+            font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto"
+          >B</text>
+
         </svg>
       </Link>
       <Link href="/">
