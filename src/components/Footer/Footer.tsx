@@ -170,9 +170,9 @@ const Footer = () => {
                 <div className='py-10 lg:flex items-center justify-between border-t border-t-bordertop'>
                     <h4 className='text-offwhite text-sm text-center lg:text-start font-normal'>@2025 DialBackup. All Rights Reserved by <Link href="https://dialbackup.com/" target="_blank"> dialbackup.com</Link></h4>
                     <div className="flex gap-5 mt-5 lg:mt-0 justify-center lg:justify-start">
-                        <h4 className='text-offwhite text-sm font-normal'><Link href="/privacy">Privacy policy</Link></h4>
+                        <h4 className='text-offwhite text-sm font-normal'><Link href="/privacy" className="hover:underline underline-offset-2">Privacy Policy</Link></h4>
                         <div className="h-5 bg-bordertop w-0.5"></div>
-                        <h4 className='text-offwhite text-sm font-normal'><Link href="/terms">Terms & conditions</Link></h4>
+                        <h4 className='text-offwhite text-sm font-normal'><Link href="/terms" className="hover:underline underline-offset-2">Terms of Service</Link></h4>
                     </div>
                 </div>
 
