@@ -28,8 +28,9 @@ export const authConfig: AuthOptions = {
                     scope:
                         "openid email profile https://www.googleapis.com/auth/contacts.readonly",
                     access_type: "offline",
-                    prompt: "consent",
-                   // include_granted_scopes: "false"  // explicitly set to false
+                    // prompt: "consent",
+                    prompt: "consent select_account",
+                    include_granted_scopes: "false"  // explicitly set to false
                 },
             },
             profile(profile) {
