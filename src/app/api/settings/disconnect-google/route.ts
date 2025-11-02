@@ -3,16 +3,15 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/lib/auth.config";
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
+export async function POST() {
   const session = await getServerSession(authConfig);
   if (!session?.user?.email)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const user = await prisma.user.findUnique({
+  await prisma.user.update({
     where: { email: session.user.email },
-    select: { id: true, name: true, email: true, phoneE164: true, phoneVerified: true, pinCode: true },
-  //   select: { id: true, name: true, email: true, phoneE164: true, pinCode: true },
+    data: { googleSub: null },
   });
 
-  return NextResponse.json({ user });
+  return NextResponse.json({ success: true });
 }
