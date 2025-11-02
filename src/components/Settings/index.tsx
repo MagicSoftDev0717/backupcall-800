@@ -360,6 +360,10 @@ export default function SettingsPage() {
           <h2 className="text-xl font-semibold flex items-center gap-2 text-midnightblue">
             <Key className="h-5 w-5 text-blue" /> IVR PIN
           </h2>
+           <p className="text-sm text-slate-500 mt-1">
+            Set a 4-digit PIN to identify yourself quickly when calling the
+            DialBackup toll-free line.
+          </p>
           <div className="mt-3 flex gap-3">
             <input
               type="password"
