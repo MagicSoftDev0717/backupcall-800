@@ -395,7 +395,7 @@ export default function SettingsPage() {
           <h3 className="mt-8 text-lg font-semibold text-red-600">Danger Zone</h3>
           <button
             onClick={handleDeleteAccount}
-            className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-3 text-sm font-semibold text-white hover:bg-red-700 transition"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-red-600 px-4 py-3 text-sm font-semibold text-midnightblue hover:bg-red-700 transition"
           >
             <Trash2 className="h-4 w-4" />
             Delete Account
