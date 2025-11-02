@@ -8,8 +8,8 @@ export async function POST(req: Request) {
   if (!session?.user?.email)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { pin } = await req.json();
-  if (!pin || pin.length !== 4)
+  const { pinCode } = await req.json();
+  if (!pinCode || pinCode.length !== 4)
     return NextResponse.json({ error: "Invalid PIN" }, { status: 400 });
 
   const user = await prisma.user.update({
