@@ -32,13 +32,22 @@ export async function POST(req: Request) {
   // });
 
   if (!user || !user.phoneE164) {
-  return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
-}
+    return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
+  }
 
+  // const call = await client.calls.create({
+  //   to: user.phoneE164!, // ✅ ensure user.phoneE164 is not null
+  //   from: process.env.TWILIO_TOLL_FREE!,
+  //   url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}&user=${user.id}`,
+  //   statusCallback: `${process.env.NEXTAUTH_URL}/api/twilio/status`,
+  //   statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
+  // });
+
+  // Dial the subscriber first. When they answer, we bridge to the callee inside /api/twilio/legA
   const call = await client.calls.create({
-    to: user.phoneE164!, // ✅ ensure user.phoneE164 is not null
-    from: process.env.TWILIO_TOLL_FREE!,
-    url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}&user=${user.id}`,
+    to: user.phoneE164,
+    from: process.env.TWILIO_TOLL_FREE!, // your Twilio number
+    url: `${process.env.NEXTAUTH_URL}/api/twilio/legA?to=${encodeURIComponent(to)}`,
     statusCallback: `${process.env.NEXTAUTH_URL}/api/twilio/status`,
     statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
   });

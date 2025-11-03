@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { Star, StarOff, RefreshCw, Search, PhoneCall } from "lucide-react";
 import Message from "@/components/Message";
-
+import CallModal from "@/components/CallModal";
 interface Contact {
   id: string;
   fullName: string;
@@ -18,6 +18,7 @@ export default function ContactsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState<"all" | "favorites">("all");
   const [msg, setMsg] = useState<{ type: "success" | "error" | "warning" | "info"; text: string } | null>(null);
+  const [callModal, setCallModal] = useState<{ open: boolean; phone: string; sid?: string }>({ open: false, phone: "" });
   useEffect(() => {
     async function loadContacts() {
       const res = await fetch("/api/contacts/list");
@@ -57,7 +58,7 @@ export default function ContactsPage() {
     try {
       const res = await fetch("/api/contacts/sync", { method: "POST" });
       if (!res.ok) throw new Error("Failed to sync contacts");
-     
+
       const contactsRes = await fetch("/api/contacts/list");
       if (contactsRes.ok) {
         const contactsData = await contactsRes.json();
@@ -84,7 +85,9 @@ export default function ContactsPage() {
       });
 
       if (res.ok) {
-       setMsg({ type: "info", text: `Calling ${phone}...` });
+        // setMsg({ type: "info", text: `Calling ${phone}...` });
+        const { callSid } = await res.json();
+        setCallModal({ open: true, phone, sid: callSid });
       } else {
         const err = await res.json();
         setMsg({
@@ -275,6 +278,13 @@ export default function ContactsPage() {
       </main>
       {msg && (
         <Message type={msg.type} text={msg.text} onClose={() => setMsg(null)} />
+      )}
+      {callModal.open && callModal.sid && (
+        <CallModal
+          phone={callModal.phone}
+          callSid={callModal.sid}
+          onClose={() => setCallModal({ open: false, phone: "" })}
+        />
       )}
     </div>
   );
