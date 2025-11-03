@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   const twiml = new twilio.twiml.VoiceResponse();
 
   // Optional greeting
-  twiml.play("https://dialbackup.com/greeting/greeting.mp3");
+  twiml.play("https://dialbackup.com/greeting/Greeting-receiver.mp3");
   // twiml.say({ voice: "alice" }, "Hello! Thank you for using DialBackup. Connecting your call now.");
 
   // Ask for PIN (use array syntax for 'input')
