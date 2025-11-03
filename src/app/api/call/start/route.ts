@@ -35,23 +35,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
   }
 
-  // const call = await client.calls.create({
-  //   to: user.phoneE164!, // ✅ ensure user.phoneE164 is not null
-  //   from: process.env.TWILIO_TOLL_FREE!,
-  //   url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}&user=${user.id}`,
-  //   statusCallback: `${process.env.NEXTAUTH_URL}/api/twilio/status`,
-  //   statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
-  // });
-
-  // Dial the subscriber first. When they answer, we bridge to the callee inside /api/twilio/legA
   const call = await client.calls.create({
-    to: user.phoneE164,
-    from: process.env.TWILIO_TOLL_FREE!, // your Twilio number
-    url: `${process.env.NEXTAUTH_URL}/api/twilio/legA?to=${encodeURIComponent(to)}`,
+    to: user.phoneE164!, // ✅ ensure user.phoneE164 is not null
+    from: process.env.TWILIO_TOLL_FREE!,
+    url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}&user=${user.id}`,
     statusCallback: `${process.env.NEXTAUTH_URL}/api/twilio/status`,
     statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
   });
 
+  
   // Save the call to DB immediately
   await prisma.call.create({
     data: {
