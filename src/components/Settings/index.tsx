@@ -37,7 +37,7 @@ export default function SettingsPage() {
   };
 
   const handleSendVerificationCode = async () => {
-    if (!profile?.phone) return alert("Enter a phone number first.");
+    if (!profile?.phoneE164) return alert("Enter a phone number first.");
     const res = await fetch("/api/settings/send-code", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
