@@ -238,7 +238,7 @@ export default function SettingsPage() {
     const res = await fetch("/api/settings/update-pin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ pin: profile.pinCode }),
+      body: JSON.stringify({ pinCode: profile.pinCode }),
     });
     if (res.ok) alert("PIN updated!");
     else alert("Failed to update PIN.");
