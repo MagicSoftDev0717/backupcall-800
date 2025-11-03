@@ -41,7 +41,7 @@ export default function SettingsPage() {
     const res = await fetch("/api/settings/send-code", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone: profile.phone }),
+      body: JSON.stringify({ phoneE164: profile.phoneE164 }),
     });
     if (res.ok) alert("Verification code sent!");
     else alert("Failed to send code.");
