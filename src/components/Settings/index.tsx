@@ -153,7 +153,7 @@ export default function SettingsPage() {
           <div className="mt-5 space-y-3">
             <input
               type="tel"
-              value={profile.phone || ""}
+              value={profile.phoneE164 || ""}
               onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
               className="block w-full rounded-lg border border-slate-300 px-3 py-2 text-midnightblue"
             />
