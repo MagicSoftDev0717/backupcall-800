@@ -5,7 +5,7 @@ import twilio from "twilio";
 export async function POST(req: Request) {
   const url = new URL(req.url);
   const toNumber = url.searchParams.get("to") || ""; // pass target number to verify-pin
-   const userId = url.searchParams.get("user") || "";
+  const userId = url.searchParams.get("user") || "";
   const baseUrl = process.env.NEXTAUTH_URL;
 
   const twiml = new twilio.twiml.VoiceResponse();

@@ -176,43 +176,6 @@ export default function ContactsPage() {
 
         {/* CONTACT LIST */}
         {filteredContacts.length > 0 ? (
-          // <ul className="mt-8 mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          //   {filteredContacts.map((contact) => (
-          //     <li
-          //       key={contact.id}
-          //       className="rounded-2xl bg-white border border-blue-500 p-5 shadow hover:shadow-lg transition flex items-center justify-between"
-          //     >
-          //       <div>
-          //         <p className="text-lg font-medium text-midnightblue">
-          //           {contact.fullName}
-          //         </p>
-          //         <p className="text-sm text-bluegray">{contact.phoneE164}</p>
-          //       </div>
-
-          //       <div className="flex items-center gap-3">
-
-          //         <button
-          //           onClick={() => handleCall(contact.phoneE164)}
-          //           className="text-green-600 hover:text-green-800 transition"
-          //           aria-label={`Call ${contact.fullName}`}
-          //         >
-          //           <PhoneCall className="h-6 w-6" />
-          //         </button>
-          //         <button
-          //           onClick={() => toggleFavorite(contact.id, contact.favorite ?? false)}
-          //           className="ml-4 text-bluegray hover:text-yellow-500 transition"
-          //           aria-label={`Toggle favorite for ${contact.fullName}`}
-          //         >
-          //           {contact.favorite ? (
-          //             <Star className="h-6 w-6 fill-yellow-500 text-yellow-500" />
-          //           ) : (
-          //             <StarOff className="h-6 w-6" />
-          //           )}
-          //         </button>
-          //       </div>
-          //     </li>
-          //   ))}
-          // </ul>
           <ul className="mt-8 mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredContacts.map((contact) => (
               <li

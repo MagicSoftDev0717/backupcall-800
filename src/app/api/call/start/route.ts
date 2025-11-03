@@ -36,7 +36,7 @@ export async function POST(req: Request) {
   }
 
   const call = await client.calls.create({
-    to: user.phoneE164!, // ✅ ensure user.phoneE164 is not null
+    to, // ✅ ensure user.phoneE164 is not null
     from: process.env.TWILIO_TOLL_FREE!,
     url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}&user=${user.id}`,
     statusCallback: `${process.env.NEXTAUTH_URL}/api/twilio/status`,
