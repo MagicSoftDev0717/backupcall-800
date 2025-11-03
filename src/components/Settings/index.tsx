@@ -233,7 +233,7 @@ export default function SettingsPage() {
   };
 
   const handlePinUpdate = async () => {
-    if (!profile.pin || profile.pin.length !== 4)
+    if (!profile.pinCode || profile.pinCode.length !== 4)
       return alert("PIN must be exactly 4 digits.");
     const res = await fetch("/api/settings/update-pin", {
       method: "POST",
