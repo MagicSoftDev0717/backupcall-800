@@ -370,7 +370,7 @@ export default function SettingsPage() {
               maxLength={4}
               placeholder="••••"
               value={profile.pinCode || ""}
-              onChange={(e) => setProfile({ ...profile, pin: e.target.value })}
+              onChange={(e) => setProfile({ ...profile, pinCode: e.target.value })}
               className="block w-24 rounded-lg border border-slate-300 px-3 py-2 text-center tracking-widest text-lg text-midnightblue"
             />
             <button
