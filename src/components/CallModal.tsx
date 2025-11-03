@@ -75,7 +75,7 @@ export default function CallModal({
           <button
             onClick={endCall}
             disabled={loading}
-            className="rounded-lg bg-red-600 px-4 py-2 font-medium text-white hover:bg-red-700 disabled:opacity-60"
+            className="rounded-lg bg-red-300 px-4 py-2 font-medium text-white hover:bg-red-700 disabled:opacity-60"
           >
             {loading ? "Ending…" : "End Call"}
           </button>

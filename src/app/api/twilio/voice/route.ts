@@ -1,4 +1,4 @@
-
+//src/app/api/voice/route.ts
 import { NextResponse } from "next/server";
 import twilio from "twilio";
 
@@ -26,11 +26,15 @@ export async function POST(req: Request) {
   // gather.say("Welcome to DialBackup. Please say or enter your four digit PIN.");
 
   // Dial callee. The 'url' here is fetched when the callee answers (B-leg whisper).
-  const dial = twiml.dial({ callerId: process.env.TWILIO_TOLL_FREE });
-  dial.number({ url: `${baseUrl}/api/twilio/callee-whisper` }, toNumber);
+   const dial = twiml.dial({
+    callerId: process.env.TWILIO_TOLL_FREE,
+    answerOnBridge: true, // explicit: bridge A to B after B answers
+  });
+
+  dial.number({ url: `${baseUrl}/api/twilio/callee-whisper`, method: "POST" }, toNumber);
 
   // If no input, repeat
-  twiml.redirect(`${baseUrl}/api/twilio/voice?to=${encodeURIComponent(toNumber)}&user=${userId}`);
+  // twiml.redirect(`${baseUrl}/api/twilio/voice?to=${encodeURIComponent(toNumber)}&user=${userId}`);
 
   return new NextResponse(twiml.toString(), {
     headers: { "Content-Type": "text/xml" },
