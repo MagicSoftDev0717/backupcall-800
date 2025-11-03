@@ -238,7 +238,7 @@ export default function SettingsPage() {
     const res = await fetch("/api/settings/update-pin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ pin: profile.pin }),
+      body: JSON.stringify({ pin: profile.pinCode }),
     });
     if (res.ok) alert("PIN updated!");
     else alert("Failed to update PIN.");
@@ -369,7 +369,7 @@ export default function SettingsPage() {
               type="password"
               maxLength={4}
               placeholder="••••"
-              value={profile.pin || ""}
+              value={profile.pinCode || ""}
               onChange={(e) => setProfile({ ...profile, pin: e.target.value })}
               className="block w-24 rounded-lg border border-slate-300 px-3 py-2 text-center tracking-widest text-lg text-midnightblue"
             />
