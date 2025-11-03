@@ -15,6 +15,6 @@ export async function POST(req: Request) {
   });
 
   // Here you'd call Twilio Verify to send the code.
-  console.log("Sent verification code to", phone);
+  console.log("Sent verification code to", phoneE164);
   return NextResponse.json({ success: true });
 }
