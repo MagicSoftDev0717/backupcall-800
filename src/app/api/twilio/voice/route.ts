@@ -1,26 +1,31 @@
+
 import { NextResponse } from "next/server";
 import twilio from "twilio";
 
-export async function POST() {
+export async function POST(req: Request) {
+  const url = new URL(req.url);
+  const toNumber = url.searchParams.get("to") || ""; // pass target number to verify-pin
+
   const twiml = new twilio.twiml.VoiceResponse();
+
+  // Optional greeting
   twiml.play("https://dialbackup.com/greeting/greeting.mp3");
   // twiml.say({ voice: "alice" }, "Hello! Thank you for using DialBackup. Connecting your call now.");
-  // If you want to forward directly:
-  // twiml.dial(to); (you could pass from session or DB)
 
-  // Ask user to say or enter their PIN
+  // Ask for PIN (use array syntax for 'input')
   const gather = twiml.gather({
-    input: "speech dtmf",
+    input: ["speech", "dtmf"],   // ✅ FIX: must be an array
     numDigits: 4,
     timeout: 8,
-    action: "/api/twilio/verify-pin",
+    action: `/api/twilio/verify-pin?to=${encodeURIComponent(toNumber)}`,
     method: "POST",
   });
+
   gather.say("Welcome to DialBackup. Please say or enter your four digit PIN.");
 
-  // If no input received, repeat
-  twiml.redirect("/api/twilio/voice");
-  
+  // If no input, repeat
+  twiml.redirect(`/api/twilio/voice?to=${encodeURIComponent(toNumber)}`);
+
   return new NextResponse(twiml.toString(), {
     headers: { "Content-Type": "text/xml" },
   });
