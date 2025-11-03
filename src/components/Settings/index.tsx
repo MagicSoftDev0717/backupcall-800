@@ -276,7 +276,7 @@ export default function SettingsPage() {
 
   return (
     <div className="min-h-screen bg-lightblue pt-28 pb-16">
-      <main className="mx-auto max-w-3xl px-4 space-y-10">
+      <main className="mx-auto max-w-3xl px-4 pb-12 space-y-10">
         <h1 className="text-3xl font-semibold text-midnightblue">
           Account Settings
         </h1>
