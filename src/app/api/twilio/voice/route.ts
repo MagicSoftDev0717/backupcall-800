@@ -15,15 +15,19 @@ export async function POST(req: Request) {
   // twiml.say({ voice: "alice" }, "Hello! Thank you for using DialBackup. Connecting your call now.");
 
   // Ask for PIN (use array syntax for 'input')
-  const gather = twiml.gather({
-    input: ["speech", "dtmf"],   // ✅ FIX: must be an array
-    numDigits: 4,
-    timeout: 8,
-    action: `/api/twilio/verify-pin?to=${encodeURIComponent(toNumber)}&user=${userId}`,
-    method: "POST",
-  });
+  // const gather = twiml.gather({
+  //   input: ["speech", "dtmf"],   // ✅ FIX: must be an array
+  //   numDigits: 4,
+  //   timeout: 8,
+  //   action: `/api/twilio/verify-pin?to=${encodeURIComponent(toNumber)}&user=${userId}`,
+  //   method: "POST",
+  // });
 
-  gather.say("Welcome to DialBackup. Please say or enter your four digit PIN.");
+  // gather.say("Welcome to DialBackup. Please say or enter your four digit PIN.");
+
+  // Dial callee. The 'url' here is fetched when the callee answers (B-leg whisper).
+  const dial = twiml.dial({ callerId: process.env.TWILIO_TOLL_FREE });
+  dial.number({ url: `${baseUrl}/api/twilio/callee-whisper` }, toNumber);
 
   // If no input, repeat
   twiml.redirect(`${baseUrl}/api/twilio/voice?to=${encodeURIComponent(toNumber)}&user=${userId}`);
