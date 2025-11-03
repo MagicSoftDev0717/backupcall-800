@@ -31,6 +31,10 @@ export async function POST(req: Request) {
   //   statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
   // });
 
+  if (!user || !user.phoneE164) {
+  return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
+}
+
   const call = await client.calls.create({
     to: user.phoneE164!, // ✅ ensure user.phoneE164 is not null
     from: process.env.TWILIO_TOLL_FREE!,
