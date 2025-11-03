@@ -12,16 +12,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // const body = await req.json();
-  // const to = body.to as string;
+  const body = await req.json();
+  const to = body.to as string;
 
   // Always dial out from your Twilio purchased number
 
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
   });
+  
   const call = await client.calls.create({
-    to: user?.phoneE164,
+    to: user.phoneE164,
     from: process.env.TWILIO_TOLL_FREE!, // e.g. "18555046854"
     // url: process.env.NEXTAUTH_URL + "/api/twilio/voice", // TwiML response (what to do once answered)
     url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}`,
