@@ -1,3 +1,4 @@
+//src/app/api/call/start/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
@@ -20,13 +21,21 @@ export async function POST(req: Request) {
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
   });
-  
+
+  // const call = await client.calls.create({
+  //   to: user.phoneE164,
+  //   from: process.env.TWILIO_TOLL_FREE!, // e.g. "18555046854"
+  //   // url: process.env.NEXTAUTH_URL + "/api/twilio/voice", // TwiML response (what to do once answered)
+  //   url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}`,
+  //   statusCallback: process.env.NEXTAUTH_URL + "/api/twilio/status",
+  //   statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
+  // });
+
   const call = await client.calls.create({
-    to: user.phoneE164,
-    from: process.env.TWILIO_TOLL_FREE!, // e.g. "18555046854"
-    // url: process.env.NEXTAUTH_URL + "/api/twilio/voice", // TwiML response (what to do once answered)
-    url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}`,
-    statusCallback: process.env.NEXTAUTH_URL + "/api/twilio/status",
+    to: user.phoneE164!, // ✅ ensure user.phoneE164 is not null
+    from: process.env.TWILIO_TOLL_FREE!,
+    url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}&user=${user.id}`,
+    statusCallback: `${process.env.NEXTAUTH_URL}/api/twilio/status`,
     statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
   });
 
