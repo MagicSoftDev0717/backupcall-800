@@ -31,9 +31,13 @@ export async function POST(req: Request) {
   //   statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
   // });
 
-  if (!user || !user.phoneE164) {
-    return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
-  }
+  // if (!user || !user.phoneE164) {
+  //   return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
+  // }
+
+   if (!user) {
+     return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
+   }
 
   const call = await client.calls.create({
     to, // ✅ ensure user.phoneE164 is not null
