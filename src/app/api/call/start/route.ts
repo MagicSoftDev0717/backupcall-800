@@ -22,25 +22,12 @@ export async function POST(req: Request) {
     where: { email: session.user.email },
   });
 
-  // const call = await client.calls.create({
-  //   to: user.phoneE164,
-  //   from: process.env.TWILIO_TOLL_FREE!, // e.g. "18555046854"
-  //   // url: process.env.NEXTAUTH_URL + "/api/twilio/voice", // TwiML response (what to do once answered)
-  //   url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}`,
-  //   statusCallback: process.env.NEXTAUTH_URL + "/api/twilio/status",
-  //   statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
-  // });
-
-  // if (!user || !user.phoneE164) {
-  //   return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
-  // }
-
-   if (!user) {
+   if (!user || !user.phoneE164) {
      return NextResponse.json({ error: "User phone number not registered" }, { status: 400 });
    }
 
   const call = await client.calls.create({
-    to, // ✅ ensure user.phoneE164 is not null
+    to: user.phoneE164,
     from: process.env.TWILIO_TOLL_FREE!,
     url: `${process.env.NEXTAUTH_URL}/api/twilio/voice?to=${encodeURIComponent(to)}&user=${user.id}`,
     statusCallback: `${process.env.NEXTAUTH_URL}/api/twilio/status`,
