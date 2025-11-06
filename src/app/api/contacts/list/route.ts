@@ -12,7 +12,9 @@ export async function GET() {
 
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
-    include: { contacts: true },
+    include: { contacts: {
+        orderBy: { fullName: "asc" }, // ✅ Sort alphabetically by name
+      }, },
   });
 
   return NextResponse.json({ contacts: user?.contacts ?? [] });

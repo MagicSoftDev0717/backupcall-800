@@ -41,14 +41,14 @@ export async function POST(req: Request) {
   }
 
   if (enteredPin !== user.pinCode) {
-    twiml.say("Incorrect PIN.");
+    twiml.say("The PIN is inconrrect.");
     // One more try:
     twiml.redirect(`${baseUrl}/api/twilio/voice?to=${encodeURIComponent(toNumber)}&user=${userId}`);
     return respond(twiml);
   }
 
   // ✅ PIN OK — connect to the recipient
-  twiml.say("PIN verified. Connecting now.");
+  twiml.say("The PIN verified. Connecting now.");
 
   const dial = twiml.dial({
     callerId: process.env.TWILIO_TOLL_FREE,
