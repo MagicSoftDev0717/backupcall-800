@@ -48,7 +48,7 @@ model Contact {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, fullName])
-  @@unique([userId, fullName]) 
+  @@unique([userId, phoneE164])
 }
 
 model Call {
