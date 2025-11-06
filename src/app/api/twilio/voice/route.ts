@@ -12,7 +12,8 @@ export async function POST(req: Request) {
 
   // 1) Short intro to the caller (A-leg)
   // twiml.play("https://dialbackup.com/greeting/Greeting-receiver.mp3");
-  // twiml.say({ voice: "alice" }, "Hello! Thank you for using DialBackup. Connecting your call now.");
+
+  twiml.say({ voice: "alice" }, "Welcome to DialBackup. Please enter your four digit PIN.");
 
   // 2) Gather PIN (DTMF or speech)
   const gather = twiml.gather({
@@ -23,18 +24,20 @@ export async function POST(req: Request) {
     method: "POST",
   });
 
-  gather.say("Welcome to DialBackup. Please say or enter your four digit PIN.");
+   // Optional: spoken prompt if DTMF not used
+  gather.say("You can also say your four digit PIN now.");
 
   // Dial callee. The 'url' here is fetched when the callee answers (B-leg whisper).
-   const dial = twiml.dial({
-    callerId: process.env.TWILIO_TOLL_FREE,
-    answerOnBridge: true, // explicit: bridge A to B after B answers
-  });
+  //  const dial = twiml.dial({
+  //   callerId: process.env.TWILIO_TOLL_FREE,
+  //   answerOnBridge: true, // explicit: bridge A to B after B answers
+  // });
 
-  dial.number({ url: `${baseUrl}/api/twilio/callee-whisper`, method: "POST" }, toNumber);
+  // dial.number({ url: `${baseUrl}/api/twilio/callee-whisper`, method: "POST" }, toNumber);
 
-  // If no input, repeat
-  // twiml.redirect(`${baseUrl}/api/twilio/voice?to=${encodeURIComponent(toNumber)}&user=${userId}`);
+// 3) If no input, reprompt once (no loop)
+  twiml.say("No input detected.");
+  twiml.redirect(`${baseUrl}/api/twilio/voice?to=${encodeURIComponent(toNumber)}&user=${userId}`);
 
   return new NextResponse(twiml.toString(), {
     headers: { "Content-Type": "text/xml" },
