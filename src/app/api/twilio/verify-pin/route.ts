@@ -1,89 +1,73 @@
-// // src/app/api/twilio/verify-pin/route.ts
-// import { NextResponse } from "next/server";
-// import twilio from "twilio";
-// import { prisma } from "@/lib/prisma";
-
-// export async function POST(req: Request) {
-//   const formData = await req.formData();
-//   const fromNumber = formData.get("From")?.toString();
-//   const digits = formData.get("Digits")?.toString();
-//   const speechResult = formData.get("SpeechResult")?.toString();
-//   const toNumber = formData.get("To")?.toString() || "+15551234567"; // fallback for demo
-
-//   const enteredPin = digits || speechResult?.replace(/\D/g, "");
-
-//   const twiml = new twilio.twiml.VoiceResponse();
-
-//   if (!fromNumber || !enteredPin) {
-//     twiml.say("No PIN detected. Goodbye.");
-//     twiml.hangup();
-//     return new NextResponse(twiml.toString(), {
-//       headers: { "Content-Type": "text/xml" },
-//     });
-//   }
-
-//   // Find the user by their registered phone
-//   const user = await prisma.user.findFirst({
-//     where: { phoneE164: fromNumber },
-//   });
-
-//   if (!user) {
-//     twiml.say("We could not identify your phone number. Goodbye.");
-//     twiml.hangup();
-//   } else if (user.pinCode === enteredPin) {
-//     // ✅ PIN verified — connect the call
-//     twiml.say("PIN verified. Connecting your call now.");
-//     const dial = twiml.dial({ callerId: process.env.TWILIO_TOLL_FREE });
-//     dial.number(toNumber);
-//   } else {
-//     // ❌ Wrong PIN
-//     twiml.say("Invalid PIN. Goodbye.");
-//     twiml.hangup();
-//   }
-
-//   return new NextResponse(twiml.toString(), {
-//     headers: { "Content-Type": "text/xml" },
-//   });
-// }
-
-
+// /src/app/api/twilio/verify-pin/route.ts
 import { NextResponse } from "next/server";
 import twilio from "twilio";
 import { prisma } from "@/lib/prisma";
 
-export async function POST(req: Request) {
-  const formData = await req.formData();
-  const digits = formData.get("Digits")?.toString();
-  const speechResult = formData.get("SpeechResult")?.toString();
-  const enteredPin = digits || speechResult?.replace(/\D/g, "");
+const MAX_ATTEMPTS = 3;
 
+export async function POST(req: Request) {
   const url = new URL(req.url);
-  const toNumber = url.searchParams.get("to");
-  const userId = url.searchParams.get("user");
+  const toNumber = url.searchParams.get("to") || "";
+  const userId   = url.searchParams.get("user") || "";
+  const baseUrl  = process.env.NEXTAUTH_URL!;
+
+  const form = await req.formData();
+  const digits       = (form.get("Digits") || "").toString();
+  const speechResult = (form.get("SpeechResult") || "").toString();
+  const enteredPin   = (digits || speechResult.replace(/\D/g, "")).slice(0,4);
 
   const twiml = new twilio.twiml.VoiceResponse();
 
-  if (!enteredPin || !userId) {
-    twiml.say("No PIN detected. Goodbye.");
+  if (!userId) {
+    twiml.say("We could not identify your account. Goodbye.");
     twiml.hangup();
-    return new NextResponse(twiml.toString(), { headers: { "Content-Type": "text/xml" } });
+    return respond(twiml);
   }
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
-
-  if (!user) {
-    twiml.say("We could not identify your account. Goodbye.");
+  if (!user?.pinCode) {
+    twiml.say("Your account is not configured for PIN access. Goodbye.");
     twiml.hangup();
-  } else if (user.pinCode === enteredPin) {
-    twiml.say("PIN verified. Connecting your call now.");
-    const dial = twiml.dial({ callerId: process.env.TWILIO_TOLL_FREE });
-    dial.number(toNumber!);
-  } else {
-    twiml.say("Invalid PIN. Goodbye.");
-    twiml.hangup();
+    return respond(twiml);
   }
 
-  return new NextResponse(twiml.toString(), {
-    headers: { "Content-Type": "text/xml" },
+  // Track attempts in DB (simple approach): add `pinAttempts` Int? on Call or User, or use cookies on Gather (not ideal).
+  // Minimal stateless approach: allow one retry via redirect back to /voice (already done).
+  if (!enteredPin || enteredPin.length !== 4) {
+    twiml.say("Invalid or missing PIN.");
+    // One more try:
+    twiml.redirect(`${baseUrl}/api/twilio/voice?to=${encodeURIComponent(toNumber)}&user=${userId}`);
+    return respond(twiml);
+  }
+
+  if (enteredPin !== user.pinCode) {
+    twiml.say("Incorrect PIN.");
+    // One more try:
+    twiml.redirect(`${baseUrl}/api/twilio/voice?to=${encodeURIComponent(toNumber)}&user=${userId}`);
+    return respond(twiml);
+  }
+
+  // ✅ PIN OK — connect to the recipient
+  twiml.say("PIN verified. Connecting now.");
+
+  const dial = twiml.dial({
+    callerId: process.env.TWILIO_TOLL_FREE,
+    answerOnBridge: true,
+    // Recording is optional but common:
+    // record: "record-from-answer-dual",
+    // recordingStatusCallback: `${baseUrl}/api/twilio/recording-status`,
   });
+
+  // Optional one-line whisper to the callee
+  // If you add it, ensure it only has a short <Say> and ends.
+  // dial.number({ url: `${baseUrl}/api/twilio/callee-whisper`, method: "POST" }, toNumber);
+
+  // Or dial directly without whisper:
+  dial.number(toNumber);
+
+  return respond(twiml);
+}
+
+function respond(twiml: twilio.twiml.VoiceResponse) {
+  return new NextResponse(twiml.toString(), { headers: { "Content-Type": "text/xml" } });
 }

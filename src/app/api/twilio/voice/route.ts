@@ -10,20 +10,20 @@ export async function POST(req: Request) {
 
   const twiml = new twilio.twiml.VoiceResponse();
 
-  // Optional greeting
-  twiml.play("https://dialbackup.com/greeting/Greeting-receiver.mp3");
+  // 1) Short intro to the caller (A-leg)
+  // twiml.play("https://dialbackup.com/greeting/Greeting-receiver.mp3");
   // twiml.say({ voice: "alice" }, "Hello! Thank you for using DialBackup. Connecting your call now.");
 
-  // Ask for PIN (use array syntax for 'input')
-  // const gather = twiml.gather({
-  //   input: ["speech", "dtmf"],   // ✅ FIX: must be an array
-  //   numDigits: 4,
-  //   timeout: 8,
-  //   action: `/api/twilio/verify-pin?to=${encodeURIComponent(toNumber)}&user=${userId}`,
-  //   method: "POST",
-  // });
+  // 2) Gather PIN (DTMF or speech)
+  const gather = twiml.gather({
+    input: ["speech", "dtmf"],   // ✅ FIX: must be an array
+    numDigits: 4,
+    timeout: 8,
+    action: `/api/twilio/verify-pin?to=${encodeURIComponent(toNumber)}&user=${userId}`,
+    method: "POST",
+  });
 
-  // gather.say("Welcome to DialBackup. Please say or enter your four digit PIN.");
+  gather.say("Welcome to DialBackup. Please say or enter your four digit PIN.");
 
   // Dial callee. The 'url' here is fetched when the callee answers (B-leg whisper).
    const dial = twiml.dial({
