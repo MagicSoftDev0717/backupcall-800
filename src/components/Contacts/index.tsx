@@ -204,10 +204,10 @@ export default function ContactsPage() {
                 <div className="flex items-center justify-between mt-2">
                   <button
                     onClick={() => handleCall(contact.phoneE164)}
-                    className="flex items-center gap-2 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 px-3 py-2 text-sm font-medium transition"
+                    className="flex items-center gap-2 rounded-full bg-green-50 text-green-600 hover:bg-green-100 px-3 py-2 text-sm font-medium transition"
                   >
                     <PhoneCall className="h-4 w-4" />
-                    Call
+                    
                   </button>
 
                   <button
